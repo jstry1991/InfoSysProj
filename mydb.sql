@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 15, 2017 at 05:32 PM
+-- Generation Time: Jul 17, 2017 at 10:59 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -30,10 +30,7 @@ CREATE TABLE `appointments` (
   `appointmentID` varchar(11) NOT NULL,
   `cost` varchar(10) DEFAULT NULL,
   `description` varchar(50) NOT NULL,
-  `duration` varchar(20) NOT NULL,
   `roomNumber` int(11) NOT NULL,
-  `visitDate` varchar(20) DEFAULT NULL,
-  `visitTime` varchar(20) DEFAULT NULL,
   `visitType` varchar(20) NOT NULL,
   `employeeID` varchar(11) DEFAULT NULL,
   `patientID` varchar(11) DEFAULT NULL
@@ -43,8 +40,35 @@ CREATE TABLE `appointments` (
 -- Dumping data for table `appointments`
 --
 
-INSERT INTO `appointments` (`appointmentID`, `cost`, `description`, `duration`, `roomNumber`, `visitDate`, `visitTime`, `visitType`, `employeeID`, `patientID`) VALUES
-('A1234', '$12.50', 'this is an appointment', '30minutes', 4, '12/11/2012', '12:30', 'doctor', 'E1234', 'P1234');
+INSERT INTO `appointments` (`appointmentID`, `cost`, `description`, `roomNumber`, `visitType`, `employeeID`, `patientID`) VALUES
+('A1', '$12.50', 'upset stomach', 1, 'scheduled', 'E1234', 'P1234'),
+('A2', '$30.00', 'flu', 2, 'walk-in', 'E1235', 'P1234');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `appointmenttime`
+--
+
+CREATE TABLE `appointmenttime` (
+  `day` varchar(10) NOT NULL,
+  `time` varchar(10) NOT NULL,
+  `appTimeID` varchar(10) NOT NULL,
+  `date` varchar(20) DEFAULT NULL,
+  `appointmentID` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `appointmenttime`
+--
+
+INSERT INTO `appointmenttime` (`day`, `time`, `appTimeID`, `date`, `appointmentID`) VALUES
+('Mon', '8:00', 'AT1', '07/17/2017', 'A1'),
+('Mon', '8:10', 'AT2', '07/17/2017', 'A2'),
+('Mon', '8:20', 'AT3', '07/17/2017', NULL),
+('Mon', '8:30', 'AT4', '07/17/2017', NULL),
+('Mon', '8:40', 'AT5', '07/17/2017', NULL),
+('Mon', '8:50', 'AT6', '07/17/2017', NULL);
 
 -- --------------------------------------------------------
 
@@ -253,19 +277,26 @@ INSERT INTO `procedures` (`codes`, `fees`, `name`, `procedureID`) VALUES
 --
 
 CREATE TABLE `schedule` (
-  `date` varchar(11) NOT NULL,
-  `emergencyTime` varchar(11) NOT NULL,
+  `emergencyCall` varchar(20) DEFAULT NULL,
   `scheduleID` varchar(11) NOT NULL,
-  `time` varchar(11) NOT NULL,
-  `employeeID` varchar(11) NOT NULL
+  `employeeID` varchar(11) NOT NULL,
+  `date` varchar(30) DEFAULT NULL,
+  `Mon` varchar(10) DEFAULT NULL,
+  `Tue` varchar(10) DEFAULT NULL,
+  `Wed` varchar(10) DEFAULT NULL,
+  `Thu` varchar(10) DEFAULT NULL,
+  `Fri` varchar(10) DEFAULT NULL,
+  `Sat` varchar(10) DEFAULT NULL,
+  `Sun` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `schedule`
 --
 
-INSERT INTO `schedule` (`date`, `emergencyTime`, `scheduleID`, `time`, `employeeID`) VALUES
-('05/24/200', '12:30pm-6pm', 'S1234', '6pm-1am', 'E1234');
+INSERT INTO `schedule` (`emergencyCall`, `scheduleID`, `employeeID`, `date`, `Mon`, `Tue`, `Wed`, `Thu`, `Fri`, `Sat`, `Sun`) VALUES
+('yes', 'S1234', 'E1234', '07/17/2017-07/23/2017', '8-4pm', '8-4pm', '8-4pm', '8-4pm', '8-4pm', NULL, NULL),
+('no', 'S1235', 'E1234', '07/17/2017-07/23/2017', '8-4pm', '6-12am', '6-12am', '8-4pm', '8-4pm', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -278,6 +309,13 @@ ALTER TABLE `appointments`
   ADD PRIMARY KEY (`appointmentID`),
   ADD KEY `employeeID` (`employeeID`,`patientID`),
   ADD KEY `patient_appointments_fk` (`patientID`);
+
+--
+-- Indexes for table `appointmenttime`
+--
+ALTER TABLE `appointmenttime`
+  ADD PRIMARY KEY (`appTimeID`),
+  ADD KEY `appointmentID` (`appointmentID`);
 
 --
 -- Indexes for table `clinic`
@@ -355,6 +393,12 @@ ALTER TABLE `schedule`
 ALTER TABLE `appointments`
   ADD CONSTRAINT `employee_appointments_fk` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`),
   ADD CONSTRAINT `patient_appointments_fk` FOREIGN KEY (`patientID`) REFERENCES `patient` (`patientID`);
+
+--
+-- Constraints for table `appointmenttime`
+--
+ALTER TABLE `appointmenttime`
+  ADD CONSTRAINT `appointmentTime_appointments_fk` FOREIGN KEY (`appointmentID`) REFERENCES `appointments` (`appointmentID`);
 
 --
 -- Constraints for table `fees`
