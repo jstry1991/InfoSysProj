@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2017 at 02:28 PM
+-- Generation Time: Jul 18, 2017 at 08:24 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -41,8 +41,9 @@ CREATE TABLE `appointments` (
 --
 
 INSERT INTO `appointments` (`appointmentID`, `cost`, `description`, `roomNumber`, `visitType`, `employeeID`, `patientID`) VALUES
-('A1', '$12.50', 'upset stomach', 1, 'scheduled', 'E1234', 'P1234'),
-('A2', '$30.00', 'flu', 2, 'walk-in', 'E1235', 'P1234');
+('A1', '$12.50', 'upset stomach', 1, 'scheduled', 'E1', 'P1'),
+('A2', '$30.00', 'flu', 2, 'walk-in', 'E2', 'P1'),
+('A3', '$50.00', 'headache', 5, 'walk-in', 'E2', 'P1');
 
 -- --------------------------------------------------------
 
@@ -65,7 +66,7 @@ CREATE TABLE `appointmenttime` (
 INSERT INTO `appointmenttime` (`day`, `time`, `appTimeID`, `date`, `appointmentID`) VALUES
 ('Mon', '8:00', 'AT1', '07/17/2017', 'A1'),
 ('Mon', '8:10', 'AT2', '07/17/2017', 'A2'),
-('Mon', '8:20', 'AT3', '07/17/2017', NULL),
+('Mon', '8:20', 'AT3', '07/17/2017', 'A3'),
 ('Mon', '8:30', 'AT4', '07/17/2017', NULL),
 ('Mon', '8:40', 'AT5', '07/17/2017', NULL),
 ('Mon', '8:50', 'AT6', '07/17/2017', NULL);
@@ -88,8 +89,10 @@ CREATE TABLE `clinic` (
 -- Dumping data for table `clinic`
 --
 
-INSERT INTO `clinic` (`address`, `clinicID`, `phoneNumber`, `name`, `employeeID`) VALUES
-('76354 donovan dr', 'CL1209', '1-813-975-3342', 'wellness clinic', 'E1234');
+
+INSERT INTO `clinic` (`address`, `clinicID`, `phoneNumber`, `name`) VALUES
+('76354 donovan dr', 'C1', '1-813-975-3342', 'wellness clinic');
+
 
 -- --------------------------------------------------------
 
@@ -110,7 +113,7 @@ CREATE TABLE `druginfo` (
 --
 
 INSERT INTO `druginfo` (`cost`, `description`, `drugID`, `name`, `warning`) VALUES
-('$20.00', 'Abilify is used to treat the symptoms of psychotic conditions such as schizophrenia and bipolar I disorder (manic depression.', 'DI3244', 'abilify', 'Common Abilify side effects may include:\r\nweight gain;\r\nblurred vision;\r\nnausea, vomiting, changes in appetite, se, sneezing, sore throat.');
+('$20.00', 'Abilify is used to treat the symptoms of psychotic conditions such as schizophrenia and bipolar I disorder (manic depression.', 'D1', 'abilify', 'Common Abilify side effects may include:\r\nweight gain;\r\nblurred vision;\r\nnausea, vomiting, changes in appetite, se, sneezing, sore throat.');
 
 -- --------------------------------------------------------
 
@@ -132,8 +135,8 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`address`, `name`, `phoneNumber`, `job`, `taxID`, `employeeID`) VALUES
-('67543 willow dr', 'bob thorton', '1-313-234-6543', 'doctor', 784563920, 'E1234'),
-('546372 weatherstone dr', 'cathy', '1-654-734-76354', 'nurse', 78654328, 'E1235');
+('67543 willow dr', 'bob thorton', '1-313-234-6543', 'doctor', 784563920, 'E1'),
+('546372 weatherstone dr', 'cathy', '1-654-734-76354', 'doctor', 78654328, 'E2');
 
 -- --------------------------------------------------------
 
@@ -156,7 +159,7 @@ CREATE TABLE `fees` (
 --
 
 INSERT INTO `fees` (`amountOwed`, `amountPaid`, `datePaid`, `dateIssued`, `feeID`, `patientID`, `totalBalance`) VALUES
-('$25.00', '$50.00', '12/25/2001', '12/21/2001', 'F1234', 'P1234', '$25.00');
+('$25.00', '$50.00', '12/21/2001', '12/21/2001', 'F1', 'P1', '$25.00');
 
 -- --------------------------------------------------------
 
@@ -176,7 +179,7 @@ CREATE TABLE `insurance` (
 --
 
 INSERT INTO `insurance` (`company`, `insuranceID`, `drugID`, `policyType`) VALUES
-('total health', 'I1234', 'DI3244', 'medical');
+('total health', 'I1', 'D1', 'medical');
 
 -- --------------------------------------------------------
 
@@ -200,7 +203,7 @@ CREATE TABLE `labtest` (
 --
 
 INSERT INTO `labtest` (`cost`, `employeeID`, `patientID`, `result`, `testDate`, `testID`, `testTime`, `testType`) VALUES
-('$12.50', 'E1234', 'P1234', 'positive', '05/24/2000', 'T1234', '12:30pm', 'bipolar');
+('$12.50', 'E1', 'P1', 'positive', '05/24/2000', 'T1', '12:30pm', 'bipolar');
 
 -- --------------------------------------------------------
 
@@ -229,8 +232,10 @@ CREATE TABLE `medication` (
 -- Dumping data for table `medication`
 --
 
-INSERT INTO `medication` (`rxNumber`, `dateFilled`, `directions`, `drugName`, `employeeID`, `form`, `medicationID`, `numberOfRefills`, `originalDate`, `patientID`, `quantity`, `strength`, `pharmacistID`, `drugID`) VALUES
-('Rx1124', '05/24/2000', 'take one pill everyday in the morning', 'Abilify', 'E1234', 'tablet', 'M1234', 4, '05/24/2000', 'P1234', 30, '10mg', 'ph1234', 'DI3244');
+
+INSERT INTO `medication` (`dateFilled`, `directions`, `drugName`, `employeeID`, `form`, `medicationID`, `numberOfRefills`, `originalDate`, `patientID`, `quantity`, `strength`) VALUES
+('05/24/2000', 'take one pill everyday in the morning', 'Abilify', 'E1', 'tablet', 'M1', 4, '05/24/2000', 'P1', 30, '10mg');
+
 
 -- --------------------------------------------------------
 
@@ -252,25 +257,7 @@ CREATE TABLE `patient` (
 --
 
 INSERT INTO `patient` (`address`, `dateOfBirth`, `name`, `phoneNumber`, `patientID`, `sex`) VALUES
-('45362 willow dr', '09/12/2001', 'jake glowright', '1-745-987-3245', 'P1234', 'male');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pharmacist`
---
-
-CREATE TABLE `pharmacist` (
-  `name` varchar(25) NOT NULL,
-  `pharmacistID` varchar(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `pharmacist`
---
-
-INSERT INTO `pharmacist` (`name`, `pharmacistID`) VALUES
-('bob jones', 'ph1234');
+('45362 willow dr', '09/12/2001', 'jake glowright', '1-745-987-3245', 'P1', 'male');
 
 -- --------------------------------------------------------
 
@@ -292,8 +279,9 @@ CREATE TABLE `procedures` (
 -- Dumping data for table `procedures`
 --
 
-INSERT INTO `procedures` (`codes`, `otherCodes`, `fees`, `name`, `procedureID`, `other`, `otherFee`) VALUES
-('C151', '', '$120.00', 'biopsy', 'PR1234', '','');
+
+INSERT INTO `procedures` (`codes`, `fees`, `name`, `procedureID`) VALUES
+('C151', '$120.00', 'biopsy', 'PR1');
 
 -- --------------------------------------------------------
 
@@ -320,8 +308,8 @@ CREATE TABLE `schedule` (
 --
 
 INSERT INTO `schedule` (`emergencyCall`, `scheduleID`, `employeeID`, `date`, `Mon`, `Tue`, `Wed`, `Thu`, `Fri`, `Sat`, `Sun`) VALUES
-('yes', 'S1234', 'E1234', '07/17/2017-07/23/2017', '8-4pm', '8-4pm', '8-4pm', '8-4pm', '8-4pm', NULL, NULL),
-('no', 'S1235', 'E1234', '07/17/2017-07/23/2017', '8-4pm', '6-12am', '6-12am', '8-4pm', '8-4pm', NULL, NULL);
+('yes', 'S1', 'E1', '07/17/2017-07/23/2017', '8-4pm', '8-4pm', '8-4pm', '8-4pm', '8-4pm', NULL, NULL),
+('no', 'S2', 'E1', '07/17/2017-07/23/2017', '8-4pm', '6-12am', '6-12am', '8-4pm', '8-4pm', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -333,7 +321,7 @@ INSERT INTO `schedule` (`emergencyCall`, `scheduleID`, `employeeID`, `date`, `Mo
 ALTER TABLE `appointments`
   ADD PRIMARY KEY (`appointmentID`),
   ADD KEY `employeeID` (`employeeID`,`patientID`),
-  ADD KEY `patient_appointments_fk` (`patientID`);
+  ADD KEY `patient_` (`patientID`);
 
 --
 -- Indexes for table `appointmenttime`
@@ -380,7 +368,8 @@ ALTER TABLE `insurance`
 --
 ALTER TABLE `labtest`
   ADD PRIMARY KEY (`testID`),
-  ADD KEY `patientID` (`patientID`);
+  ADD KEY `patientID` (`patientID`),
+  ADD KEY `employeeID` (`employeeID`);
 
 --
 -- Indexes for table `medication`
@@ -397,12 +386,6 @@ ALTER TABLE `medication`
 --
 ALTER TABLE `patient`
   ADD PRIMARY KEY (`patientID`);
-
---
--- Indexes for table `pharmacist`
---
-ALTER TABLE `pharmacist`
-  ADD PRIMARY KEY (`pharmacistID`);
 
 --
 -- Indexes for table `procedures`
@@ -426,7 +409,7 @@ ALTER TABLE `schedule`
 --
 ALTER TABLE `appointments`
   ADD CONSTRAINT `employee_appointments_fk` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`),
-  ADD CONSTRAINT `patient_appointments_fk` FOREIGN KEY (`patientID`) REFERENCES `patient` (`patientID`);
+  ADD CONSTRAINT `patient_` FOREIGN KEY (`patientID`) REFERENCES `patient` (`patientID`);
 
 --
 -- Constraints for table `appointmenttime`
@@ -450,6 +433,7 @@ ALTER TABLE `insurance`
 -- Constraints for table `labtest`
 --
 ALTER TABLE `labtest`
+  ADD CONSTRAINT `employee_test_fk` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`),
   ADD CONSTRAINT `patient_test_fk` FOREIGN KEY (`patientID`) REFERENCES `patient` (`patientID`);
 
 --
