@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2017 at 08:24 PM
+-- Generation Time: Jul 18, 2017 at 10:17 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -33,17 +33,19 @@ CREATE TABLE `appointments` (
   `roomNumber` int(11) NOT NULL,
   `visitType` varchar(20) NOT NULL,
   `employeeID` varchar(11) DEFAULT NULL,
-  `patientID` varchar(11) DEFAULT NULL
+  `patientID` varchar(11) DEFAULT NULL,
+  `diagnosis` varchar(20) DEFAULT NULL,
+  `procedureID` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `appointments`
 --
 
-INSERT INTO `appointments` (`appointmentID`, `cost`, `description`, `roomNumber`, `visitType`, `employeeID`, `patientID`) VALUES
-('A1', '$12.50', 'upset stomach', 1, 'scheduled', 'E1', 'P1'),
-('A2', '$30.00', 'flu', 2, 'walk-in', 'E2', 'P1'),
-('A3', '$50.00', 'headache', 5, 'walk-in', 'E2', 'P1');
+INSERT INTO `appointments` (`appointmentID`, `cost`, `description`, `roomNumber`, `visitType`, `employeeID`, `patientID`, `diagnosis`, `procedureID`) VALUES
+('A1', '$12.50', 'stomach pains', 1, 'walk-in', 'E1', 'P1', 'headache', 'PR2'),
+('A2', '$30.00', 'fractured bone', 2, 'scheduled', 'E2', 'P1', 'broken arm', 'PR1'),
+('A3', '$50.00', 'fractured bone', 5, 'scheduled', 'E2', 'P1', 'broken leg', 'PR1');
 
 -- --------------------------------------------------------
 
@@ -81,15 +83,18 @@ CREATE TABLE `clinic` (
   `address` varchar(30) NOT NULL,
   `clinicID` varchar(10) NOT NULL,
   `phoneNumber` varchar(20) DEFAULT NULL,
-  `name` varchar(20) DEFAULT NULL
+  `name` varchar(20) DEFAULT NULL,
+  `employeeID` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `clinic`
 --
 
+
 INSERT INTO `clinic` (`address`, `clinicID`, `phoneNumber`, `name`) VALUES
 ('76354 donovan dr', 'C1', '1-813-975-3342', 'wellness clinic');
+
 
 -- --------------------------------------------------------
 
@@ -133,7 +138,8 @@ CREATE TABLE `employee` (
 
 INSERT INTO `employee` (`address`, `name`, `phoneNumber`, `job`, `taxID`, `employeeID`) VALUES
 ('67543 willow dr', 'bob thorton', '1-313-234-6543', 'doctor', 784563920, 'E1'),
-('546372 weatherstone dr', 'cathy', '1-654-734-76354', 'doctor', 78654328, 'E2');
+('546372 weatherstone dr', 'cathy', '1-654-734-76354', 'doctor', 78654328, 'E2'),
+('74532 maple dr', 'nancy', '1-810-543-9732', 'nurse', 543982730, 'E3');
 
 -- --------------------------------------------------------
 
@@ -209,6 +215,7 @@ INSERT INTO `labtest` (`cost`, `employeeID`, `patientID`, `result`, `testDate`, 
 --
 
 CREATE TABLE `medication` (
+  `rxNumber` varchar(10) NOT NULL,
   `dateFilled` varchar(11) NOT NULL,
   `directions` varchar(100) NOT NULL,
   `drugName` varchar(20) NOT NULL,
@@ -219,15 +226,19 @@ CREATE TABLE `medication` (
   `originalDate` varchar(11) NOT NULL,
   `patientID` varchar(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `strength` varchar(10) NOT NULL
+  `strength` varchar(10) NOT NULL,
+  `pharmacistID` varchar(11) NOT NULL,
+  `drugID` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `medication`
 --
 
+
 INSERT INTO `medication` (`dateFilled`, `directions`, `drugName`, `employeeID`, `form`, `medicationID`, `numberOfRefills`, `originalDate`, `patientID`, `quantity`, `strength`) VALUES
 ('05/24/2000', 'take one pill everyday in the morning', 'Abilify', 'E1', 'tablet', 'M1', 4, '05/24/2000', 'P1', 30, '10mg');
+
 
 -- --------------------------------------------------------
 
@@ -259,17 +270,22 @@ INSERT INTO `patient` (`address`, `dateOfBirth`, `name`, `phoneNumber`, `patient
 
 CREATE TABLE `procedures` (
   `codes` varchar(10) DEFAULT NULL,
+  `otherCodes` varchar(10) DEFAULT NULL,
   `fees` varchar(10) DEFAULT NULL,
   `name` varchar(20) NOT NULL,
-  `procedureID` varchar(10) NOT NULL
+  `procedureID` varchar(10) NOT NULL,
+  `other` varchar(100) DEFAULT NULL,
+  `otherFee` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `procedures`
 --
 
+
 INSERT INTO `procedures` (`codes`, `fees`, `name`, `procedureID`) VALUES
-('C151', '$120.00', 'biopsy', 'PR1');
+('C151', '$120.00', 'surgery', 'PR1'),
+('C150', '$30.00', 'patient check-up', 'PR2');
 
 -- --------------------------------------------------------
 
@@ -299,6 +315,27 @@ INSERT INTO `schedule` (`emergencyCall`, `scheduleID`, `employeeID`, `date`, `Mo
 ('yes', 'S1', 'E1', '07/17/2017-07/23/2017', '8-4pm', '8-4pm', '8-4pm', '8-4pm', '8-4pm', NULL, NULL),
 ('no', 'S2', 'E1', '07/17/2017-07/23/2017', '8-4pm', '6-12am', '6-12am', '8-4pm', '8-4pm', NULL, NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `surgeries`
+--
+
+CREATE TABLE `surgeries` (
+  `nurseID` varchar(10) NOT NULL,
+  `SurgeryID` varchar(10) NOT NULL,
+  `notes` varchar(50) NOT NULL,
+  `appointmentID` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `surgeries`
+--
+
+INSERT INTO `surgeries` (`nurseID`, `SurgeryID`, `notes`, `appointmentID`) VALUES
+('E3', 'SU1', 'his shit was broken dawg', 'A2'),
+('E3', 'SU2', 'his shit was broken again dawg', 'A3');
+
 --
 -- Indexes for dumped tables
 --
@@ -309,7 +346,8 @@ INSERT INTO `schedule` (`emergencyCall`, `scheduleID`, `employeeID`, `date`, `Mo
 ALTER TABLE `appointments`
   ADD PRIMARY KEY (`appointmentID`),
   ADD KEY `employeeID` (`employeeID`,`patientID`),
-  ADD KEY `patient_` (`patientID`);
+  ADD KEY `patient_` (`patientID`),
+  ADD KEY `procedureID` (`procedureID`);
 
 --
 -- Indexes for table `appointmenttime`
@@ -322,7 +360,8 @@ ALTER TABLE `appointmenttime`
 -- Indexes for table `clinic`
 --
 ALTER TABLE `clinic`
-  ADD PRIMARY KEY (`clinicID`);
+  ADD PRIMARY KEY (`clinicID`),
+  ADD key `employeeID` (`employeeID`);
 
 --
 -- Indexes for table `druginfo`
@@ -363,6 +402,8 @@ ALTER TABLE `labtest`
 --
 ALTER TABLE `medication`
   ADD PRIMARY KEY (`medicationID`),
+  ADD KEY `drugID` (`drugID`),
+  ADD KEY `pharmacistID` (`pharmacistID`),
   ADD KEY `employeeID` (`employeeID`,`patientID`),
   ADD KEY `patient_medication_fk` (`patientID`);
 
@@ -386,6 +427,14 @@ ALTER TABLE `schedule`
   ADD KEY `employeeID` (`employeeID`);
 
 --
+-- Indexes for table `surgeries`
+--
+ALTER TABLE `surgeries`
+  ADD PRIMARY KEY (`SurgeryID`),
+  ADD KEY `nurseID` (`nurseID`),
+  ADD KEY `appointmentID` (`appointmentID`);
+
+--
 -- Constraints for dumped tables
 --
 
@@ -394,7 +443,8 @@ ALTER TABLE `schedule`
 --
 ALTER TABLE `appointments`
   ADD CONSTRAINT `employee_appointments_fk` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`),
-  ADD CONSTRAINT `patient_` FOREIGN KEY (`patientID`) REFERENCES `patient` (`patientID`);
+  ADD CONSTRAINT `patient_` FOREIGN KEY (`patientID`) REFERENCES `patient` (`patientID`),
+  ADD CONSTRAINT `procedure_procedureID_fk` FOREIGN KEY (`procedureID`) REFERENCES `procedures` (`procedureID`);
 
 --
 -- Constraints for table `appointmenttime`
@@ -433,6 +483,13 @@ ALTER TABLE `medication`
 --
 ALTER TABLE `schedule`
   ADD CONSTRAINT `employee_schedule_fk` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`);
+
+--
+-- Constraints for table `surgeries`
+--
+ALTER TABLE `surgeries`
+  ADD CONSTRAINT `nurse_employee_fk` FOREIGN KEY (`nurseID`) REFERENCES `employee` (`employeeID`),
+  ADD CONSTRAINT `surgeries_appointments_fk` FOREIGN KEY (`appointmentID`) REFERENCES `appointments` (`appointmentID`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
