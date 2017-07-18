@@ -84,7 +84,8 @@ CREATE TABLE `clinic` (
   `clinicID` varchar(10) NOT NULL,
   `phoneNumber` varchar(20) DEFAULT NULL,
   `name` varchar(20) DEFAULT NULL,
-  `employeeID` varchar(11) NOT NULL
+  `employeeID` varchar(11) NOT NULL,
+  `patientID` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -92,8 +93,8 @@ CREATE TABLE `clinic` (
 --
 
 
-INSERT INTO `clinic` (`address`, `clinicID`, `phoneNumber`, `name`) VALUES
-('76354 donovan dr', 'C1', '1-813-975-3342', 'wellness clinic');
+INSERT INTO `clinic` (`address`, `clinicID`, `phoneNumber`, `name`, `employeeID`, `patientID`) VALUES
+('76354 donovan dr', 'C1', '1-813-975-3342', 'wellness clinic', 'E2', 'P1');
 
 
 -- --------------------------------------------------------
@@ -261,7 +262,7 @@ CREATE TABLE `patient` (
 
 INSERT INTO `patient` (`address`, `dateOfBirth`, `name`, `phoneNumber`, `patientID`, `sex`) VALUES
 ('45362 willow dr', '09/12/2001', 'jake glowright', '1-745-987-3245', 'P1', 'male');
-
+ 
 -- --------------------------------------------------------
 
 --
@@ -275,7 +276,8 @@ CREATE TABLE `procedures` (
   `name` varchar(20) NOT NULL,
   `procedureID` varchar(10) NOT NULL,
   `other` varchar(100) DEFAULT NULL,
-  `otherFee` varchar(10) DEFAULT NULL
+  `otherFee` varchar(10) DEFAULT NULL,
+  `patientID` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -361,7 +363,8 @@ ALTER TABLE `appointmenttime`
 --
 ALTER TABLE `clinic`
   ADD PRIMARY KEY (`clinicID`),
-  ADD key `employeeID` (`employeeID`);
+  ADD key `employeeID` (`employeeID`),
+  ADD key `patientID` (`patientID`);
 
 --
 -- Indexes for table `druginfo`
