@@ -23,14 +23,14 @@ echo
 if($result->num_rows>0){
 while($row = mysqli_fetch_assoc($result)){
 	if($row)
-		echo "<tr><td>".$row["name"]."</td><<td>".$row["phoneNumber"]."</td><td>".$row["EmergencyCall"]."</td><td>".$row["date"]."</td><td>".$row["Mon"]
+		echo "<tr><td>".$row["name"]."</td><td>".$row["phoneNumber"]."</td><td>".$row["EmergencyCall"]."</td><td>".$row["date"]."</td><td>".$row["Mon"]
 	."</td><td>".$row["Tue"]."</td><td>".$row["Wed"]."</td><td>".$row["Thu"]."</td><td>".$row["Fri"]."</td><td>".$row["Sat"]."</td><td>".$row["Sun"]."</td></tr>";
 }}
 else{
 	echo "no results bro"; 
 }
 echo 
-"<table>";
+"</table>";
 
 include('dbclose.php'); 
 ?>
