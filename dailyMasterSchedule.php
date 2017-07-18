@@ -15,13 +15,13 @@ echo
 if($result->num_rows>0){
 while($row = mysqli_fetch_assoc($result)){
 	if($row)
-		echo "<tr><td>".$row["name"]."</td><<td>".$row["time"]."</td><td>".$row["day"]."</td></tr>";
+		echo "<tr><td>".$row["name"]."</td><td>".$row["time"]."</td><td>".$row["day"]."</td></tr>";
 	}}
 else{
 	echo "no results bro"; 
 }
 echo 
-"<table>";
+"</table>";
 
 include('dbclose.php'); 
 ?>
