@@ -14,6 +14,11 @@ echo
 </tr>";
 if($result->num_rows>0){
 while($row = mysqli_fetch_assoc($result)){
+<<<<<<< HEAD
+	if($row)
+		echo "<tr><td>".$row["name"]."</td><td>".$row["time"]."</td><td>".$row["day"]."</td></tr>";
+	}}
+=======
 	$name = $row["name"]; 
 	echo "<tr><td>".$row["name"]."</td>";
 	$query2 = "SELECT a.time, a.day FROM employee e, appointmenttime a, 
@@ -24,6 +29,7 @@ while($row = mysqli_fetch_assoc($result)){
 	while($row2 = mysqli_fetch_assoc($result2)){
 		echo "<td>".$row2["time"]."</td><td>".$row2["day"]."</td></tr>";
 }}}
+>>>>>>> origin/master
 else{
 	echo "no results bro"; 
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 17, 2017 at 10:59 PM
+-- Generation Time: Jul 18, 2017 at 02:28 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -218,15 +218,16 @@ CREATE TABLE `medication` (
   `originalDate` varchar(11) NOT NULL,
   `patientID` varchar(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `strength` varchar(10) NOT NULL
+  `strength` varchar(10) NOT NULL,
+  `pharmacistID` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `medication`
 --
 
-INSERT INTO `medication` (`dateFilled`, `directions`, `drugName`, `employeeID`, `form`, `medicationID`, `numberOfRefills`, `originalDate`, `patientID`, `quantity`, `strength`) VALUES
-('05/24/2000', 'take one pill everyday in the morning', 'Abilify', 'E1234', 'tablet', 'M1234', 4, '05/24/2000', 'P1234', 30, '10mg');
+INSERT INTO `medication` (`dateFilled`, `directions`, `drugName`, `employeeID`, `form`, `medicationID`, `numberOfRefills`, `originalDate`, `patientID`, `quantity`, `strength`, `pharmacistID`) VALUES
+('05/24/2000', 'take one pill everyday in the morning', 'Abilify', 'E1234', 'tablet', 'M1234', 4, '05/24/2000', 'P1234', 30, '10mg', 'ph1234');
 
 -- --------------------------------------------------------
 
@@ -249,6 +250,24 @@ CREATE TABLE `patient` (
 
 INSERT INTO `patient` (`address`, `dateOfBirth`, `name`, `phoneNumber`, `patientID`, `sex`) VALUES
 ('45362 willow dr', '09/12/2001', 'jake glowright', '1-745-987-3245', 'P1234', 'male');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pharmacist`
+--
+
+CREATE TABLE `pharmacist` (
+  `name` varchar(25) NOT NULL,
+  `pharmacistID` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pharmacist`
+--
+
+INSERT INTO `pharmacist` (`name`, `pharmacistID`) VALUES
+('bob jones', 'ph1234');
 
 -- --------------------------------------------------------
 
@@ -361,6 +380,7 @@ ALTER TABLE `labtest`
 --
 ALTER TABLE `medication`
   ADD PRIMARY KEY (`medicationID`),
+  ADD KEY `pharmacistID` (`pharmacistID`),
   ADD KEY `employeeID` (`employeeID`,`patientID`),
   ADD KEY `patient_medication_fk` (`patientID`);
 
@@ -369,6 +389,12 @@ ALTER TABLE `medication`
 --
 ALTER TABLE `patient`
   ADD PRIMARY KEY (`patientID`);
+
+--
+-- Indexes for table `pharmacist`
+--
+ALTER TABLE `pharmacist`
+  ADD PRIMARY KEY (`pharmacistID`);
 
 --
 -- Indexes for table `procedures`
