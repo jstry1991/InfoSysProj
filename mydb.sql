@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2017 at 10:17 PM
+-- Generation Time: Jul 19, 2017 at 12:20 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -84,18 +84,43 @@ CREATE TABLE `clinic` (
   `clinicID` varchar(10) NOT NULL,
   `phoneNumber` varchar(20) DEFAULT NULL,
   `name` varchar(20) DEFAULT NULL,
-  `employeeID` varchar(11) NOT NULL,
-  `patientID` varchar(11) NOT NULL
+  `appointmentID` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `clinic`
 --
 
+INSERT INTO `clinic` (`address`, `clinicID`, `phoneNumber`, `name`, `appointmentID`) VALUES
+('76354 donovan dr', 'C1', '1-813-975-3342', 'wellness clinic', 'A1');
 
-INSERT INTO `clinic` (`address`, `clinicID`, `phoneNumber`, `name`, `employeeID`, `patientID`) VALUES
-('76354 donovan dr', 'C1', '1-813-975-3342', 'wellness clinic', 'E2', 'P1');
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `diagnoses`
+--
+
+CREATE TABLE `diagnoses` (
+  `name` varchar(20) NOT NULL,
+  `codes` varchar(10) NOT NULL,
+  `other` varchar(20) DEFAULT NULL,
+  `diagnosesID` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `diagnoses`
+--
+
+INSERT INTO `diagnoses` (`name`, `codes`, `other`, `diagnosesID`) VALUES
+('Hypertension', '1234', NULL, 'D1'),
+('Hyperlipidemia', '2345', NULL, 'D2'),
+('Diabetes', '3456', NULL, 'D3'),
+('Back Pain', '4567', NULL, 'D4'),
+('Anxiety', '5678', NULL, 'D5'),
+('Obesity', '6798', NULL, 'D6'),
+('Allergic Rhinitis', '7890', NULL, 'D7'),
+('Reflux Esophagitis', '1122', NULL, 'D8'),
+('Respiratory Problems', '2233', NULL, 'D9');
 
 -- --------------------------------------------------------
 
@@ -175,15 +200,16 @@ CREATE TABLE `insurance` (
   `company` varchar(20) NOT NULL,
   `insuranceID` varchar(11) NOT NULL,
   `drugID` varchar(11) NOT NULL,
-  `policyType` varchar(10) NOT NULL
+  `policyType` varchar(10) NOT NULL,
+  `patientID` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `insurance`
 --
 
-INSERT INTO `insurance` (`company`, `insuranceID`, `drugID`, `policyType`) VALUES
-('total health', 'I1', 'D1', 'medical');
+INSERT INTO `insurance` (`company`, `insuranceID`, `drugID`, `policyType`, `patientID`) VALUES
+('total health', 'I1', 'D1', 'medical', 'P1');
 
 -- --------------------------------------------------------
 
@@ -236,10 +262,8 @@ CREATE TABLE `medication` (
 -- Dumping data for table `medication`
 --
 
-
-INSERT INTO `medication` (`dateFilled`, `directions`, `drugName`, `employeeID`, `form`, `medicationID`, `numberOfRefills`, `originalDate`, `patientID`, `quantity`, `strength`) VALUES
-('05/24/2000', 'take one pill everyday in the morning', 'Abilify', 'E1', 'tablet', 'M1', 4, '05/24/2000', 'P1', 30, '10mg');
-
+INSERT INTO `medication` (`rxNumber`, `dateFilled`, `directions`, `drugName`, `employeeID`, `form`, `medicationID`, `numberOfRefills`, `originalDate`, `patientID`, `quantity`, `strength`, `pharmacistID`, `drugID`) VALUES
+('', '05/24/2000', 'take one pill everyday in the morning', 'Abilify', 'E1', 'tablet', 'M1', 4, '05/24/2000', 'P1', 30, '10mg', '', '');
 
 -- --------------------------------------------------------
 
@@ -262,7 +286,7 @@ CREATE TABLE `patient` (
 
 INSERT INTO `patient` (`address`, `dateOfBirth`, `name`, `phoneNumber`, `patientID`, `sex`) VALUES
 ('45362 willow dr', '09/12/2001', 'jake glowright', '1-745-987-3245', 'P1', 'male');
- 
+
 -- --------------------------------------------------------
 
 --
@@ -284,10 +308,9 @@ CREATE TABLE `procedures` (
 -- Dumping data for table `procedures`
 --
 
-
-INSERT INTO `procedures` (`codes`, `fees`, `name`, `procedureID`) VALUES
-('C151', '$120.00', 'surgery', 'PR1'),
-('C150', '$30.00', 'patient check-up', 'PR2');
+INSERT INTO `procedures` (`codes`, `otherCodes`, `fees`, `name`, `procedureID`, `other`, `otherFee`, `patientID`) VALUES
+('C151', NULL, '$120.00', 'surgery', 'PR1', NULL, NULL, ''),
+('C150', NULL, '$30.00', 'patient check-up', 'PR2', NULL, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -363,8 +386,13 @@ ALTER TABLE `appointmenttime`
 --
 ALTER TABLE `clinic`
   ADD PRIMARY KEY (`clinicID`),
-  ADD key `employeeID` (`employeeID`),
-  ADD key `patientID` (`patientID`);
+  ADD KEY `appointmentID` (`appointmentID`);
+
+--
+-- Indexes for table `diagnoses`
+--
+ALTER TABLE `diagnoses`
+  ADD PRIMARY KEY (`diagnosesID`);
 
 --
 -- Indexes for table `druginfo`
