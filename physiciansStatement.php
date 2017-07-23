@@ -19,6 +19,7 @@ $result = mysqli_query($conn,$query);
 echo
 "<table>
 	<tr>
+<<<<<<< HEAD
 		<th>Clinic Name |</th>
 		<th>Clinic Address |</th>
 		<th>Clinic Phone Number |</th>
@@ -36,6 +37,24 @@ echo
 		<th>Balance Due |</th>
 		<th>Patient's Insurance Company |</th>
 		<th>COmmon Diagnoses </th>
+=======
+		<th>Clinic Name</th>
+		<th>Clinic Address</th>
+		<th>Clinic Phone Number</th>
+		<th>Patient Name</th>
+		<th>Employee Name</th>
+		<th>Tax Identification Number</th>
+		<th>Visit Type</th>
+		<th>Procesures That are Preformed</th>
+		<th>Procedure Code</th>
+		<th>Other</th>
+		<th>Other Fees</th>
+		<th>Other Codes</th>
+		<th>Fee</th>
+		<th>Amount Paid</th>
+		<th>Balance Due</th>
+		<th>Patient's Insurance Company</th>
+>>>>>>> origin/localrepo
 		</tr>";
 if ($result->num_rows > 0) {
 while ($row = mysqli_fetch_assoc($result)){ //Creates a loop through results

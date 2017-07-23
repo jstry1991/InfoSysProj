@@ -13,22 +13,22 @@ $result = mysqli_query($conn,$query);
 echo
 "<table>
 <tr>
-	<th> Patient Name | </th>
-	<th> Patient Address | </th>
-	<th> Doctor Name | </th>
-	<th> Rx Number | </th>
-	<th> Drug Name | </th>
-	<th> Directions | </th>
-	<th> Original Date | </th>
-	<th> Date Filled | </th>
-	<th> Number of Refills Remaining | </th>
-	<th> Strength | </th>
-	<th> Quantity | </th>
-	<th> Pharmacist Name | </th>
-	<th> Drug Cost | </th>
-	<th> Drug Description | </th>
-	<th> Warnings | </th>
-	<th> Insurance COmpany | </th>
+	<th> Patient Name </th>
+	<th> Patient Address </th>
+	<th> Doctor Name </th>
+	<th> Rx Number </th>
+	<th> Drug Name </th>
+	<th> Directions </th>
+	<th> Original Date </th>
+	<th> Date Filled </th>
+	<th> Number of Refills Remaining </th>
+	<th> Strength </th>
+	<th> Quantity </th>
+	<th> Pharmacist Name </th>
+	<th> Drug Cost </th>
+	<th> Drug Description </th>
+	<th> Warnings </th>
+	<th> Insurance COmpany </th>
 	<th> Policy Type </th>
 </tr>";
 if ($result->num_rows > 0) {
