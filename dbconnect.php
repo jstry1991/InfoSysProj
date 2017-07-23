@@ -4,9 +4,8 @@ $dbhost="localhost";
 $dbuser = "root";
 $dbpass = "";
 $dberror = "could not connect to the db";
+$dbname = "mydb";
 
-$conn = mysqli_connect($dbhost,$dbuser,$dbpass) or die($dberror);
-
-mysqli_select_db($conn,"mydb");
+$conn = new mysqli($dbhost,$dbuser,$dbpass,$dbname) or die($dberror);
 
 ?>
