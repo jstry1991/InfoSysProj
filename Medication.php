@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<head><link rel="stylesheet" href="style.css" type="text/css"></head>
 <body>
 	<?php
 	include('dbconnect.php');
@@ -8,17 +9,17 @@ $result = mysqli_query($conn,$query);
 echo
 "<table>
 <tr>
-	<th> dateFilled | </th>
-	<th> directions | </th>
-	<th> drugName | </th>
-	<th> employeeID | </th>
-	<th> form | </th>
-	<th> medicationID | </th>
-	<th> numberOfRefills | </th>
-	<th> originalDate | </th>
-	<th> patientID | </th>
-	<th> quantity | </th>
-	<th> strength | </th>
+	<th> dateFilled </th>
+	<th> directions </th>
+	<th> drugName </th>
+	<th> employeeID </th>
+	<th> form </th>
+	<th> medicationID </th>
+	<th> numberOfRefills </th>
+	<th> originalDate </th>
+	<th> patientID </th>
+	<th> quantity </th>
+	<th> strength </th>
 </tr>";
 if ($result->num_rows > 0) {
 while ($row = mysqli_fetch_assoc($result)){ //Creates a loop through results
