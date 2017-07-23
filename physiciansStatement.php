@@ -19,22 +19,22 @@ $result2 = mysqli_query($conn,$query2);
 echo
 "<table>
 	<tr>
-		<th>Clinic Name |</th>
-		<th>Clinic Address |</th>
-		<th>Clinic Phone Number |</th>
-		<th>Patient Name |</th>
-		<th>Employee Name |</th>
-		<th>Tax Identification Number |</th>
-		<th>Visit Type |</th>
-		<th>Procesures That are Preformed |</th>
-		<th>Procedure Code |</th>
-		<th>Other |</th>
-		<th>Other Fees|</th>
-		<th>Other Codes |</th>
-		<th>Fee |</th>
-		<th>Amount Paid|</th>
-		<th>Balance Due |</th>
-		<th>Patient's Insurance Company |</th>
+		<th>Clinic Name</th>
+		<th>Clinic Address</th>
+		<th>Clinic Phone Number</th>
+		<th>Patient Name</th>
+		<th>Employee Name</th>
+		<th>Tax Identification Number</th>
+		<th>Visit Type</th>
+		<th>Procesures That are Preformed</th>
+		<th>Procedure Code</th>
+		<th>Other</th>
+		<th>Other Fees</th>
+		<th>Other Codes</th>
+		<th>Fee</th>
+		<th>Amount Paid</th>
+		<th>Balance Due</th>
+		<th>Patient's Insurance Company</th>
 		</tr>";
 if ($result->num_rows > 0) {
 while ($row = mysqli_fetch_assoc($result)){ //Creates a loop through results
