@@ -2,6 +2,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="style.css" type="text/css">
+<a href ="index.html">Home</a>
 </head>
 <body>
 	<?php
