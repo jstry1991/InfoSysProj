@@ -3,8 +3,15 @@
 <head><link rel="stylesheet" href="style.css" type="text/css"></head>
 <a href ="index.html">Home</a>
 <body>
+<h3>Select a Practioner name to print out Individual schedule</h3>
+<form action="individualPractitionersSchedule.php" method="post">
+  name:<br>
+  <input type="text" name="fname"><br>
+  <input type="submit" name="submit" value ="submit">
+</form>
 <?php 
 include('dbconnect.php');
+if(isset($_POST['fname'])){
 $Practitioner=$_POST['fname'];  
 $query="SELECT name FROM employee WHERE job <> 'nurse' AND job <> 'janitor' AND name ='".$Practitioner."' ORDER BY name ASC";
 $result = mysqli_query($conn,$query); 
@@ -35,7 +42,8 @@ else{
 echo 
 "</table>";
 
-include('dbclose.php'); 
+include('dbclose.php');
+} 
 ?>
 </body>
 </html>
