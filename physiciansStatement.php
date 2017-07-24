@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head><link rel="stylesheet" href="style.css" type="text/css"></head>
+
 <body><!--
 <form action="./physiciansStatement.php" method="post">
 	<input type="text" value="" size="25px" name="search" />
 	<input type="submit" value="search"/>
 </form>
 -->
+<a href ="index.html">Home</a>
 	<?php
 	include('dbconnect.php');
 	//$var = $_POST["search"];
