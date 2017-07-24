@@ -114,11 +114,11 @@ CREATE TABLE `diagnoses` (
 INSERT INTO `diagnoses` (`name`, `codes`, `other`, `diagnosesID`) VALUES
 ('Hypertension', '1234', NULL, 'D1'),
 ('Hyperlipidemia', '2345', NULL, 'D2'),
-('Diabetes', '3456', NULL, 'D3'),
+('Diabetes', NULL, '3456', 'D3'),
 ('Back Pain', '4567', NULL, 'D4'),
-('Anxiety', '5678', NULL, 'D5'),
+('Anxiety', NULL, '5678', 'D5'),
 ('Obesity', '6798', NULL, 'D6'),
-('Allergic Rhinitis', '7890', NULL, 'D7'),
+('Allergic Rhinitis', NULL, '7890', 'D7'),
 ('Reflux Esophagitis', '1122', NULL, 'D8'),
 ('Respiratory Problems', '2233', NULL, 'D9');
 
@@ -141,7 +141,7 @@ CREATE TABLE `druginfo` (
 --
 
 INSERT INTO `druginfo` (`cost`, `description`, `drugID`, `name`, `warning`) VALUES
-('$20.00', 'Abilify is used to treat the symptoms of psychotic conditions such as schizophrenia and bipolar I disorder (manic depression.', 'D1', 'abilify', 'Common Abilify side effects may include:\r\nweight gain;\r\nblurred vision;\r\nnausea, vomiting, changes in appetite, se, sneezing, sore throat.');
+('$20.00', 'Abilify is used to treat the symptoms of psychotic conditions such as schizophrenia and bipolar I disorder (manic depression.', 'D1', 'Abilify', 'Common Abilify side effects may include:\r\nweight gain;\r\nblurred vision;\r\nnausea, vomiting, changes in appetite, se, sneezing, sore throat.');
 
 -- --------------------------------------------------------
 
@@ -254,7 +254,7 @@ CREATE TABLE `medication` (
   `patientID` varchar(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `strength` varchar(10) NOT NULL,
-  `pharmacistID` varchar(11) NOT NULL,
+  `pharmacist` varchar(20) NOT NULL,
   `drugID` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -262,8 +262,8 @@ CREATE TABLE `medication` (
 -- Dumping data for table `medication`
 --
 
-INSERT INTO `medication` (`rxNumber`, `dateFilled`, `directions`, `drugName`, `employeeID`, `form`, `medicationID`, `numberOfRefills`, `originalDate`, `patientID`, `quantity`, `strength`, `pharmacistID`, `drugID`) VALUES
-('', '05/24/2000', 'take one pill everyday in the morning', 'Abilify', 'E1', 'tablet', 'M1', 4, '05/24/2000', 'P1', 30, '10mg', '', '');
+INSERT INTO `medication` (`rxNumber`, `dateFilled`, `directions`, `drugName`, `employeeID`, `form`, `medicationID`, `numberOfRefills`, `originalDate`, `patientID`, `quantity`, `strength`, `pharmacist`, `drugID`) VALUES
+('rx672432', '05/24/2000', 'take one pill everyday in the morning', 'Abilify', 'E1', 'tablet', 'M1', 4, '05/24/2000', 'P1', 30, '10mg', 'Rachel Jene', 'D1');
 
 -- --------------------------------------------------------
 
@@ -434,7 +434,6 @@ ALTER TABLE `labtest`
 ALTER TABLE `medication`
   ADD PRIMARY KEY (`medicationID`),
   ADD KEY `drugID` (`drugID`),
-  ADD KEY `pharmacistID` (`pharmacistID`),
   ADD KEY `employeeID` (`employeeID`,`patientID`),
   ADD KEY `patient_medication_fk` (`patientID`);
 
