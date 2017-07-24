@@ -56,7 +56,7 @@ mysqli_query($conn,$sqlinsert);
 		('67543 willow dr', 'bob thorton', '1-313-234-6543', 'doctor', 784563920, 'E1'),
 		('546372 weatherstone dr', 'cathy', '1-654-734-76354', 'doctor', 78654328, 'E2'),
 		('74532 maple dr', 'nancy', '1-810-543-9732', 'nurse', 543982730, 'E3'),
-		('57354 Big Beaver Rd', 'Rachel', '1-248-858-1283', 'pharmacist', 34092584, 'E3')";
+		('1234 maple dr', 'Rachel', '1-800-121-4547', 'Pharmacis', 85267453, 'E4')";
 mysqli_query($conn,$sqlinsert);
 	$sqlinsert="INSERT INTO `fees` (`amountOwed`, `amountPaid`, `datePaid`, `dateIssued`, `feeID`, `patientID`, `totalBalance`) VALUES
 		('$25.00', '$50.00', '12/21/2001', '12/21/2001', 'F1', 'P1', '$25.00')";

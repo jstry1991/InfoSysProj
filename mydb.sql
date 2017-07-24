@@ -102,7 +102,7 @@ INSERT INTO `clinic` (`address`, `clinicID`, `phoneNumber`, `name`, `appointment
 
 CREATE TABLE `diagnoses` (
   `name` varchar(20) NOT NULL,
-  `codes` varchar(10) NOT NULL,
+  `codes` varchar(10) DEFAULT NULL,
   `other` varchar(20) DEFAULT NULL,
   `diagnosesID` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -114,11 +114,11 @@ CREATE TABLE `diagnoses` (
 INSERT INTO `diagnoses` (`name`, `codes`, `other`, `diagnosesID`) VALUES
 ('Hypertension', '1234', NULL, 'D1'),
 ('Hyperlipidemia', '2345', NULL, 'D2'),
-('Diabetes', '', '3456', 'D3'),
+('Diabetes', NULL, '3456', 'D3'),
 ('Back Pain', '4567', NULL, 'D4'),
-('Anxiety', '', '5678', 'D5'),
+('Anxiety', NULL, '5678', 'D5'),
 ('Obesity', '6798', NULL, 'D6'),
-('Allergic Rhinitis', '', '7890', 'D7'),
+('Allergic Rhinitis', NULL, '7890', 'D7'),
 ('Reflux Esophagitis', '1122', NULL, 'D8'),
 ('Respiratory Problems', '2233', NULL, 'D9');
 
@@ -165,7 +165,8 @@ CREATE TABLE `employee` (
 INSERT INTO `employee` (`address`, `name`, `phoneNumber`, `job`, `taxID`, `employeeID`) VALUES
 ('67543 willow dr', 'bob thorton', '1-313-234-6543', 'doctor', 784563920, 'E1'),
 ('546372 weatherstone dr', 'cathy', '1-654-734-76354', 'doctor', 78654328, 'E2'),
-('74532 maple dr', 'nancy', '1-810-543-9732', 'nurse', 543982730, 'E3');
+('74532 maple dr', 'nancy', '1-810-543-9732', 'nurse', 543982730, 'E3'),
+('1234 maple dr', 'Rachel', '1-800-121-4547', 'Pharmacis', 85267453, 'E4');
 
 -- --------------------------------------------------------
 
