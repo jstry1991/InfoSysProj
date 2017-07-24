@@ -22,7 +22,7 @@ echo
 if ($result->num_rows > 0) {
 while ($row = mysqli_fetch_assoc($result)){ //Creates a loop through results
 	if ($row)
-		echo "<tr><td>".$row["appointmentID"]."</td><td>".$row["cost"]."</td><td>".$row["description"]."</td><td>".$row["description"]
+		echo "<tr><td>".$row["appointmentID"]."</td><td>".$row["cost"]."</td><td>".$row["description"]
 	."</td><td>".$row["roomNumber"]."</td><td>".$row["visitType"]."</td><td>".$row["employeeID"]."</td><td>".$row["patientID"]
 	."</td><td>".$row["diagnosis"]."</td><td>".$row["procedureID"]."</td></tr>";
 }

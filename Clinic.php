@@ -13,11 +13,12 @@ echo
 	<th> clinicID</th>
 	<th> phoneNumber</th>
 	<th> name</th>
+	<th> appointmentID</th>
 </tr>";
 if ($result->num_rows > 0) {
 while ($row = mysqli_fetch_assoc($result)){ //Creates a loop through results
 	if ($row)
-		echo "<tr><td>".$row["address"]."</td><td>".$row["clinicID"]."</td><td>".$row["phoneNumber"]."</td><td>".$row["name"]."</td></tr>";
+		echo "<tr><td>".$row["address"]."</td><td>".$row["clinicID"]."</td><td>".$row["phoneNumber"]."</td><td>".$row["name"]."</td><td>".$row["appointmentID"]."</td></tr>";
 }
 }
 else {

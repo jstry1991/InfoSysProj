@@ -20,13 +20,17 @@ echo
 	<th> patientID </th>
 	<th> quantity </th>
 	<th> strength </th>
+	<th> pharmacistID</th>
+	<th>drugID</th>
+	<th>rxNumber</th>
 </tr>";
 if ($result->num_rows > 0) {
 while ($row = mysqli_fetch_assoc($result)){ //Creates a loop through results
 	if ($row)
 		echo "<tr><td>".$row["dateFilled"]."</td><td>".$row["directions"]."</td><td>".$row["drugName"]."</td><td>".$row["employeeID"]
 	."</td><td>".$row["form"]."</td><td>".$row["medicationID"]."</td><td>".$row["numberOfRefills"]."</td><td>".$row["originalDate"]
-	."</td><td>".$row["patientID"]."</td><td>".$row["quantity"]."</td><td>".$row["strength"]."</td></tr>";
+	."</td><td>".$row["patientID"]."</td><td>".$row["quantity"]."</td><td>".$row["strength"]."</td><td>".$row["pharmacistID"]."</td><td>".$row["drugID"].
+	"</td><td>".$row["rxNumber"]."</td></tr>";
 }
 }
 else {
