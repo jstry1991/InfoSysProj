@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><link rel="stylesheet" href="style.css" type="text/css"></head>
+<a href ="index.html">Home</a>
 <body>
 <?php
 include('dbconnect.php'); 
