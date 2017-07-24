@@ -165,7 +165,8 @@ CREATE TABLE `employee` (
 INSERT INTO `employee` (`address`, `name`, `phoneNumber`, `job`, `taxID`, `employeeID`) VALUES
 ('67543 willow dr', 'bob thorton', '1-313-234-6543', 'doctor', 784563920, 'E1'),
 ('546372 weatherstone dr', 'cathy', '1-654-734-76354', 'doctor', 78654328, 'E2'),
-('74532 maple dr', 'nancy', '1-810-543-9732', 'nurse', 543982730, 'E3');
+('74532 maple dr', 'nancy', '1-810-543-9732', 'nurse', 543982730, 'E3'),
+('57354 Big Beaver Rd', 'Rachel', '1-248-858-1283', 'pharmacist', 34092584, 'E3')
 
 -- --------------------------------------------------------
 
@@ -309,8 +310,8 @@ CREATE TABLE `procedures` (
 --
 
 INSERT INTO `procedures` (`codes`, `otherCodes`, `fees`, `name`, `procedureID`, `other`, `otherFee`, `patientID`) VALUES
-('C151', NULL, '$120.00', 'surgery', 'PR1', NULL, NULL, ''),
-('C150', NULL, '$30.00', 'patient check-up', 'PR2', NULL, NULL, '');
+('C151', NULL, '120.50', 'surgery', 'PR1', NULL, NULL, 'P1'),
+('C150', NULL, '30.00', 'patient check-up', 'PR2', NULL, NULL, 'P1');
 
 -- --------------------------------------------------------
 
