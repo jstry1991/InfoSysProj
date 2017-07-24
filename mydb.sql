@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 23, 2017 at 10:53 PM
+-- Generation Time: Jul 24, 2017 at 06:46 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -114,11 +114,11 @@ CREATE TABLE `diagnoses` (
 INSERT INTO `diagnoses` (`name`, `codes`, `other`, `diagnosesID`) VALUES
 ('Hypertension', '1234', NULL, 'D1'),
 ('Hyperlipidemia', '2345', NULL, 'D2'),
-('Diabetes', NULL, '3456', 'D3'),
+('Diabetes', '', '3456', 'D3'),
 ('Back Pain', '4567', NULL, 'D4'),
-('Anxiety', NULL, '5678', 'D5'),
+('Anxiety', '', '5678', 'D5'),
 ('Obesity', '6798', NULL, 'D6'),
-('Allergic Rhinitis', NULL, '7890', 'D7'),
+('Allergic Rhinitis', '', '7890', 'D7'),
 ('Reflux Esophagitis', '1122', NULL, 'D8'),
 ('Respiratory Problems', '2233', NULL, 'D9');
 
@@ -165,8 +165,7 @@ CREATE TABLE `employee` (
 INSERT INTO `employee` (`address`, `name`, `phoneNumber`, `job`, `taxID`, `employeeID`) VALUES
 ('67543 willow dr', 'bob thorton', '1-313-234-6543', 'doctor', 784563920, 'E1'),
 ('546372 weatherstone dr', 'cathy', '1-654-734-76354', 'doctor', 78654328, 'E2'),
-('74532 maple dr', 'nancy', '1-810-543-9732', 'nurse', 543982730, 'E3'),
-('57354 Big Beaver Rd', 'Rachel', '1-248-858-1283', 'pharmacist', 34092584, 'E3')
+('74532 maple dr', 'nancy', '1-810-543-9732', 'nurse', 543982730, 'E3');
 
 -- --------------------------------------------------------
 
