@@ -4,25 +4,20 @@
 <body>
 	<?php
 	include('dbconnect.php');
-$query ="SELECT * FROM procedures";
+$query ="SELECT * FROM diagnoses";
 $result = mysqli_query($conn,$query);
 echo
 "<table>
 <tr>
-	<th> codes </th>
-	<th> otherCodes </th>
-	<th> fees </th>
 	<th> name </th>
-	<th> procedureID </th>
+	<th> codes </th>
 	<th> other </th>
-	<th> otherFee </th>
-	<th> patientID </th>
-	</tr>";
+	<th> diagnosesID </th>
+</tr>";
 if ($result->num_rows > 0) {
 while ($row = mysqli_fetch_assoc($result)){ //Creates a loop through results
 	if ($row)
-		echo "<tr><td>".$row["codes"]."</td><td>".$row["otherCodes"]."</td><td>".$row["fees"]."</td><td>".$row["name"].
-	"</td><td>".$row["procedureID"]."</td><td>".$row["other"]."</td><td>".$row["otherFee"]."</td><td>".$row["patientID"]."</td></tr>";
+		echo "<tr><td>".$row["name"]."</td><td>".$row["codes"]."</td><td>".$row["other"]."</td><td>".$row["diagnosesID"]."</td></tr>";
 }
 }
 else {
