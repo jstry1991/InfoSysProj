@@ -13,11 +13,12 @@ echo
 	<th> insuranceID </th>
 	<th> drugID </th>
 	<th> policyType </th>
+	<th>patientID</th>
 	</tr>";
 if ($result->num_rows > 0) {
 while ($row = mysqli_fetch_assoc($result)){ //Creates a loop through results
 	if ($row)
-		echo "<tr><td>".$row["company"]."</td><td>".$row["insuranceID"]."</td><td>".$row["drugID"]."</td><td>".$row["policyType"]."</td></tr>";
+		echo "<tr><td>".$row["company"]."</td><td>".$row["insuranceID"]."</td><td>".$row["drugID"]."</td><td>".$row["policyType"]."</td><td>".$row["patientID"]."</td></tr>";
 }
 }
 else {
