@@ -30,7 +30,7 @@
 	<li><a href="weeklyCoverageSchedule.php">weekly coverage schedule</a></li>
 	<li><a href="dailyMasterSchedule.php">Daily Master Schedule</a></li>
 	<li><a href="individualPractitionersSchedule.php">Individual Practitioners Schedule</a></li>
-	<li><a href="physiciansStatement.php">Physicians Statement For Insurance Forms</a></li>
+	<li><a href="physiciansStatement2_1.php">Physicians Statement For Insurance Forms</a></li>
 	<li><a href="patientMonthlyStatement.php">Patient Monthly Statement</a></li>
 	<li><a href="prescriptionLabelandReceipt.php">Prescription Label And Receipt</a></li>
 	<li><a href="labTest.php">Daily Laboratory Log</a></li>
@@ -50,6 +50,30 @@
 	<button type="reset" >Clear</button>
 </form>
 </form>
-<
+<h2> Add Patient </h2>
+<form method="post" action="crud.php">
+	<input type="hidden" name="patient">
+		<ul style="list-style-type: none">
+			<li>Patient Name: <input type="text" size="25px" name="patientName" placeholder="First Last"></li>
+			<li>Address: <input type="text" size="25px" name="patientAddress" placeholder="Address" ></li>
+			<li>Date of Birth: <input type="text" size="25px" name="patientDateOfBirth" placeholder="MM/DD/YY" ></li>
+			<li>Phone Number: <input type="text" size="25px" name="patientNumber" placeholder="x-xxx-xxx-xxxx" ></li>
+			<li>Gender: <input type="text" size="25px" name="patientSex" placeholder="Male/Female"></li>
+			<li>Patient ID: <input type="text" size="25px" name="patientID" placeholder="P_"></li>
+			<button type="submit" name="save">Save</button>
+		</ul>
+</form>
+
+<h2> Delete Patient </h2>
+<?php while($row = mysqli_fetch_array($results)) { ?>
+<form method="post" action="crud.php">
+	<input type="hidden" name="patient">
+		<ul style="list-style-type: none">
+			<li>Patient Name: <input type="text" size="25" name="patientName" placeholder="First Last"></li>
+			<li>Patient ID: <input type="text" size="25" name="patientID" placeholder="P_"></li>
+			<a href="crud.php?delete=<?php echo $row['patientID']; ?>">Delete</a>
+		</ul>
+</form>
+<?php } ?>
 </body>
 </html>
