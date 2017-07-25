@@ -38,8 +38,16 @@
 <li><a href="monthlyReport.php">Monthly Activity Report</a></li>
 </ol>
 <form action="clear_pop.php" method="post">
-  <input type="submit" id="button" name="clear" value="Clear Database">
-  <input type="submit" id="button" name="populate" value ="Populate Database">
+  <input type="submit"  name="clear" value="Clear Database">
+  <input type="submit" name="populate" value ="Populate Database">
+</form>
+<br>
+<form action="Ad_Hoc.php" method="post">
+  <textarea name="query" rows="10" cols="30">Enter query here...</textarea>
+  <br>
+  <input type="submit" name ="submit">
+  <button type="reset" >Clear</button>
+</form>
 </form>
 </body>
 </html>

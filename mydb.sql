@@ -102,7 +102,7 @@ INSERT INTO `clinic` (`address`, `clinicID`, `phoneNumber`, `name`, `appointment
 
 CREATE TABLE `diagnoses` (
   `name` varchar(20) NOT NULL,
-  `codes` varchar(10) NOT NULL,
+  `codes` varchar(10) DEFAULT NULL,
   `other` varchar(20) DEFAULT NULL,
   `diagnosesID` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

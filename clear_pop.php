@@ -1,3 +1,5 @@
+<html>
+<a href ="index.html">Home</a>
 <?php
 include('dbconnect.php');
 if(isset($_REQUEST['clear'])){
@@ -7,16 +9,15 @@ if(isset($_REQUEST['clear'])){
 	"labtest","medication","patient","procedures","schedule","surgeries");
 	for($i=0; $i<count($tableList); $i++){
 	$sqldel="Truncate table ".$tableList[$i]."";
-	echo $sqldel;
 	mysqli_query($conn,$sqldel);}
 	$sqlquery="SET FOREIGN_KEY_CHECKS=1";
 	mysqli_query($conn,$sqlquery);
 }
-
+include('dbclose.php');
 ?>
 
 <?php
-
+include('dbconnect.php');
 if(isset($_REQUEST['populate'])){
 	$sqlquery="SET FOREIGN_KEY_CHECKS=0";
 mysqli_query($conn,$sqlquery);
@@ -56,7 +57,7 @@ mysqli_query($conn,$sqlinsert);
 		('67543 willow dr', 'bob thorton', '1-313-234-6543', 'doctor', 784563920, 'E1'),
 		('546372 weatherstone dr', 'cathy', '1-654-734-76354', 'doctor', 78654328, 'E2'),
 		('74532 maple dr', 'nancy', '1-810-543-9732', 'nurse', 543982730, 'E3'),
-		('57354 Big Beaver Rd', 'Rachel', '1-248-858-1283', 'pharmacist', 34092584, 'E3')";
+		('57354 Big Beaver Rd', 'Rachel', '1-248-858-1283', 'pharmacist', 34092584, 'E4')";
 mysqli_query($conn,$sqlinsert);
 	$sqlinsert="INSERT INTO `fees` (`amountOwed`, `amountPaid`, `datePaid`, `dateIssued`, `feeID`, `patientID`, `totalBalance`) VALUES
 		('$25.00', '$50.00', '12/21/2001', '12/21/2001', 'F1', 'P1', '$25.00')";
@@ -78,7 +79,7 @@ mysqli_query($conn,$sqlinsert);
 		('C150', NULL, '30.00', 'patient check-up', 'PR2', NULL, NULL, 'P1')";
 mysqli_query($conn,$sqlinsert);
 	$sqlinsert="INSERT INTO `schedule` (`emergencyCall`, `scheduleID`, `employeeID`, `date`, `Mon`, `Tue`, `Wed`, `Thu`, `Fri`, `Sat`, `Sun`) VALUES
-	(	'yes', 'S1', 'E1', '07/17/2017-07/23/2017', '8-4pm', '8-4pm', '8-4pm', '8-4pm', '8-4pm', NULL, NULL),
+		('yes', 'S1', 'E1', '07/17/2017-07/23/2017', '8-4pm', '8-4pm', '8-4pm', '8-4pm', '8-4pm', NULL, NULL),
 		('no', 'S2', 'E1', '07/17/2017-07/23/2017', '8-4pm', '6-12am', '6-12am', '8-4pm', '8-4pm', NULL, NULL)";
 mysqli_query($conn,$sqlinsert);
 	$sqlinsert="INSERT INTO `surgeries` (`nurseID`, `SurgeryID`, `notes`, `appointmentID`) VALUES
@@ -88,5 +89,6 @@ mysqli_query($conn,$sqlinsert);
 	$sqlquery="SET FOREIGN_KEY_CHECKS=1";
 mysqli_query($conn,$sqlquery);
 }
-
+include('dbclose.php');
 ?>
+</html>
