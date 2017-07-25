@@ -7,12 +7,15 @@
 <form action="individualPractitionersSchedule.php" method="post">
   name:<br>
   <input type="text" name="fname"><br>
+  day:<br>
+  <input type="text" name ="day"><br>
   <input type="submit" name="submit" value ="submit">
 </form>
 <?php 
 include('dbconnect.php');
-if(isset($_POST['fname'])){
-$Practitioner=$_POST['fname'];  
+if(isset($_POST['fname'],$_POST['day'])){
+$Practitioner=$_POST['fname'];
+$day=$_POST['day'];  
 $query="SELECT name FROM employee WHERE job <> 'nurse' AND job <> 'janitor' AND name ='".$Practitioner."' ORDER BY name ASC";
 $result = mysqli_query($conn,$query); 
 echo"<table>";
@@ -29,7 +32,7 @@ echo"
 <th>time</th>
 <th>day</th></tr>";
 $query2 = "SELECT a.time, a.day,p.name,ap.description FROM employee e, appointmenttime a, 
-appointments ap,patient p WHERE e.employeeID = ap.employeeID 
+appointments ap,patient p WHERE a.day ='".$day."' AND e.employeeID = ap.employeeID 
 AND a.appointmentID = ap.appointmentID AND e.job <> 'nurse' AND e.job <> 'janitor' AND ap.patientID = p.patientID AND e.name = '".$Practitioner."';";
 $result2 = mysqli_query($conn,$query2); 
 while($row2 = mysqli_fetch_assoc($result2)){

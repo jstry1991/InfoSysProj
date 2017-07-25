@@ -3,14 +3,26 @@
 <head><link rel="stylesheet" href="style.css" type="text/css"></head>
 <a href ="index.html">Home</a>
 <body>
-	<?php
-	include('dbconnect.php');
-$query ="SELECT med.rxNumber, med.drugName as med_name, med.dateFilled, med.directions, med.form, med.numberOfRefills, med.quantity, med.strength, med.originalDate, p.name as p_name, p.address, em.name as em_name, ph.name as ph_name, di.cost, di.description, di.warning, ins.company, ins.policyType FROM medication as med 
+<form action="prescriptionLabelandReceipt.php" method="post">
+  name:<br>
+  <input type="text" name="fname"><br>
+  drug name:<br>
+  <input type="text" name ="drug"><br>
+  <input type="submit" name="submit" value ="submit">
+</form>
+<?php 
+include('dbconnect.php');
+if(isset($_POST['fname'],$_POST['drug'])){
+$patient=$_POST['fname'];
+$drug=$_POST['drug'];
+$query ="SELECT med.rxNumber, med.drugName as med_name, med.dateFilled, med.directions, med.form, med.numberOfRefills, med.quantity, 
+med.strength, med.originalDate, p.name as p_name, p.address, em.name as em_name, ph.name as ph_name, di.cost, di.description, 
+di.warning, ins.company, ins.policyType FROM medication as med 
 INNER JOIN patient as p ON med.patientID= p.patientID
 INNER JOIN employee as em ON med.employeeID= em.employeeID
 INNER JOIN employee as ph on med.pharmacistID=ph.employeeID
 INNER JOIN druginfo as di on med.drugID= di.drugID
-INNER JOIN insurance as ins on ins.drugID=di.drugID";
+INNER JOIN insurance as ins on ins.drugID=di.drugID WHERE p.name = '".$patient."' AND med.drugName = '".$drug."'";
 $result = mysqli_query($conn,$query);
 echo
 "<table>
@@ -44,6 +56,7 @@ while ($row = mysqli_fetch_assoc($result)){ //Creates a loop through results
 }
 else {
 	echo "DIDN'T FIND ANYTHING";
+}
 }
 echo 
 "</table>";

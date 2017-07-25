@@ -5,7 +5,8 @@
 <body>
 	<?php
 	include('dbconnect.php');
-$query ="SELECT p.name, p.address, p.dateOfBirth, p.phoneNumber, f.amountOwed, f.amountPaid, f.datePaid, f.dateIssued, f.totalBalance FROM patient p, fees f WHERE p.patientID=f.patientID";
+$query ="SELECT p.name, p.address, p.dateOfBirth, p.phoneNumber, f.amountOwed, f.amountPaid, f.datePaid, f.dateIssued, f.totalBalance FROM patient p, 
+fees f WHERE p.patientID=f.patientID AND f.amountOwed IS NOT NULL";
 $result = mysqli_query($conn,$query);
 echo
 "<table>

@@ -3,13 +3,21 @@
 <head><link rel="stylesheet" href="style.css" type="text/css"></head>
 <a href ="index.html">Home</a>
 <body>
-	<?php
+<form action="operating_room_schedule.php" method="post">
+  day:<br>
+  <input type="text" name="day"><br>
+  <input type="submit" name="submit" value ="submit">
+</form>
+<?php
+include('dbconnect.php');
+if(isset($_POST['day'])){
+$day=$_POST['day'];
 	include('dbconnect.php');
 $query="SELECT *, e.name as e_name 
 		FROM appointments a 
 		INNER JOIN employee e ON e.employeeID=a.employeeID 
 		INNER JOIN appointmenttime ap ON ap.appointmentID = a.appointmentID
-		INNER JOIN surgeries s ON s.appointmentID = a.appointmentID";
+		INNER JOIN surgeries s ON s.appointmentID = a.appointmentID WHERE ap.day ='".$day."' AND s.results iS NULL";
 $result = mysqli_query($conn,$query);
 echo
 "<table>
@@ -33,6 +41,7 @@ echo
 "</table>";
 
 include('dbclose.php'); 
+}
 ?>
 </body>
 </html>
