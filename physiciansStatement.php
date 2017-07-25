@@ -7,6 +7,28 @@
 	<input type="text" value="" size="25px" name="search" />
 	<input type="submit" value="search"/>
 </form>-->
+<?php
+
+	include('dbconnect.php');
+
+?>
+<form action="./physiciansStatement.php" method="post">
+<input type ="hidden" name="submitted" value="true" />
+<fieldset>
+	<h3>Clinic Name:</h3>
+	<input type="text" name="clinicName" id="clinicName">
+	<h3>Clinic Address: </h3>
+	<input type="text" name="clinicAddress" id="clinicAddress">
+	<h3>Clinic Phone Number:</h3>
+	<input type="text" name="clinicPhonenumber" id="clinicPhonenumber">
+	<h3>Clinic ID:</h3>
+	<input type="text" name="clinicID" id="clinicID">
+	<h3>Appointment ID:</h3>
+	<input type="text" name="appointmentID" id="appointmentID">
+</fieldset>
+	<input type="submit" name="submitted">
+</form>
+
 <a href ="index.html">Home</a>
 	<?php
 //	$var = $_POST["search"];
@@ -15,6 +37,19 @@
 
 //$sql = "SELECT * FROM patient where name = '". $var ."'";
 $sql2 = "SELECT sum(cast(fees as decimal)) as total FROM procedures";
+
+if (isset($_POST['submitted'])) {
+	$cName = $_POST['clinicName'];
+	$cAddress = $_POST['clinicAddress'];
+	$cPhoneNumber = $_POST['clinicPhonenumber'];
+	$cID = $_POST['clinicID'];
+	$cAppointmentID = $_POST['appointmentID'];
+	$sql="INSERT INTO clinic (address, clinicID, phoneNumber, name, appointmentID) VALUES ('".$cAddress."', '".$cID."', '".$cPhoneNumber."', '".$cName."', '".$cAppointmentID."')";
+	$resultSubmit = mysqli_query($conn, $sql);
+	if(!$resultSubmit) {
+		die("There was an error");
+	}
+}
 
 $query ="SELECT c.name as clinic_name, c.address as clinic_address, c.phoneNumber as clinic_number, em.taxID as employee_tax, em.name as employee_name, p.name as patient_name, a.visitType, pr.name as procedure_name, pr.codes, pr.other, pr.otherFee, pr.fees as procedure_fees, pr.otherCodes, f.amountPaid, f.totalBalance, i.company
 		FROM clinic as c 

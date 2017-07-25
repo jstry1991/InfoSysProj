@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 23, 2017 at 10:53 PM
+-- Generation Time: Jul 24, 2017 at 06:46 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -29,9 +29,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `appointments` (
   `appointmentID` varchar(11) NOT NULL,
   `cost` varchar(10) DEFAULT NULL,
-  `description` varchar(50) NOT NULL,
-  `roomNumber` int(11) NOT NULL,
-  `visitType` varchar(20) NOT NULL,
+  `description` varchar(50) DEFAULT NULL,
+  `roomNumber` int(11) DEFAULT NULL,
+  `visitType` varchar(20) DEFAULT NULL,
   `employeeID` varchar(11) DEFAULT NULL,
   `patientID` varchar(11) DEFAULT NULL,
   `diagnosis` varchar(20) DEFAULT NULL,
@@ -84,7 +84,7 @@ CREATE TABLE `clinic` (
   `clinicID` varchar(10) NOT NULL,
   `phoneNumber` varchar(20) DEFAULT NULL,
   `name` varchar(20) DEFAULT NULL,
-  `appointmentID` varchar(11) NOT NULL
+  `appointmentID` varchar(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -92,7 +92,8 @@ CREATE TABLE `clinic` (
 --
 
 INSERT INTO `clinic` (`address`, `clinicID`, `phoneNumber`, `name`, `appointmentID`) VALUES
-('76354 donovan dr', 'C1', '1-813-975-3342', 'wellness clinic', 'A1');
+('76354 donovan dr', 'C1', '1-813-975-3342', 'wellness clinic', 'A1'),
+('12344 Big Bear Dr', 'C2', '1-234-643-6849', 'superwellness clinic', '' );
 
 -- --------------------------------------------------------
 
@@ -150,7 +151,7 @@ INSERT INTO `druginfo` (`cost`, `description`, `drugID`, `name`, `warning`) VALU
 --
 
 CREATE TABLE `employee` (
-  `address` varchar(25) NOT NULL,
+  `address` varchar(25) DEFAULT NULL,
   `name` varchar(20) NOT NULL,
   `phoneNumber` varchar(15) DEFAULT NULL,
   `job` varchar(20) NOT NULL,
@@ -166,7 +167,7 @@ INSERT INTO `employee` (`address`, `name`, `phoneNumber`, `job`, `taxID`, `emplo
 ('67543 willow dr', 'bob thorton', '1-313-234-6543', 'doctor', 784563920, 'E1'),
 ('546372 weatherstone dr', 'cathy', '1-654-734-76354', 'doctor', 78654328, 'E2'),
 ('74532 maple dr', 'nancy', '1-810-543-9732', 'nurse', 543982730, 'E3'),
-('57354 Big Beaver Rd', 'Rachel', '1-248-858-1283', 'pharmacist', 34092584, 'E3')
+('1234 maple dr', 'Rachel', '1-800-121-4547', 'Pharmacis', 85267453, 'E4');
 
 -- --------------------------------------------------------
 
@@ -273,12 +274,12 @@ INSERT INTO `medication` (`rxNumber`, `dateFilled`, `directions`, `drugName`, `e
 --
 
 CREATE TABLE `patient` (
-  `address` varchar(25) NOT NULL,
+  `address` varchar(25) DEFAULT NULL,
   `dateOfBirth` varchar(10) DEFAULT NULL,
   `name` varchar(20) NOT NULL,
   `phoneNumber` varchar(20) DEFAULT NULL,
   `patientID` varchar(11) NOT NULL,
-  `sex` varchar(10) NOT NULL
+  `sex` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
