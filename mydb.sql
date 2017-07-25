@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 24, 2017 at 06:46 PM
+-- Generation Time: Jul 25, 2017 at 08:50 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -66,12 +66,12 @@ CREATE TABLE `appointmenttime` (
 --
 
 INSERT INTO `appointmenttime` (`day`, `time`, `appTimeID`, `date`, `appointmentID`) VALUES
-('Mon', '8:00', 'AT1', '07/17/2017', 'A1'),
-('Mon', '8:10', 'AT2', '07/17/2017', 'A2'),
-('Mon', '8:20', 'AT3', '07/17/2017', 'A3'),
-('Mon', '8:30', 'AT4', '07/17/2017', NULL),
-('Mon', '8:40', 'AT5', '07/17/2017', NULL),
-('Mon', '8:50', 'AT6', '07/17/2017', NULL);
+('monday', '8:00', 'AT1', '07/17/2017', 'A1'),
+('monday', '8:10', 'AT2', '07/17/2017', 'A2'),
+('monday', '8:20', 'AT3', '07/17/2017', 'A3'),
+('monday', '8:30', 'AT4', '07/17/2017', NULL),
+('monday', '8:40', 'AT5', '07/17/2017', NULL),
+('monday', '8:50', 'AT6', '07/17/2017', NULL);
 
 -- --------------------------------------------------------
 
@@ -141,7 +141,7 @@ CREATE TABLE `druginfo` (
 --
 
 INSERT INTO `druginfo` (`cost`, `description`, `drugID`, `name`, `warning`) VALUES
-('$20.00', 'Abilify is used to treat the symptoms of psychotic conditions such as schizophrenia and bipolar I disorder (manic depression.', 'D1', 'Abilify', 'Common Abilify side effects may include:\r\nweight gain;\r\nblurred vision;\r\nnausea, vomiting, changes in appetite, se, sneezing, sore throat.');
+('$20.00', 'Abilify is used to treat the symptoms of psychotic conditions such as schizophrenia and bipolar I disorder (manic depression.', 'D1', 'Abilify', 'Common Abilify side effects may include:\r\nweight gain;\r\nblurred vision;\r\nnausea, vomiting, changes in appetite, se, \r\n		sneezing, sore throat.');
 
 -- --------------------------------------------------------
 
@@ -166,7 +166,7 @@ INSERT INTO `employee` (`address`, `name`, `phoneNumber`, `job`, `taxID`, `emplo
 ('67543 willow dr', 'bob thorton', '1-313-234-6543', 'doctor', 784563920, 'E1'),
 ('546372 weatherstone dr', 'cathy', '1-654-734-76354', 'doctor', 78654328, 'E2'),
 ('74532 maple dr', 'nancy', '1-810-543-9732', 'nurse', 543982730, 'E3'),
-('1234 maple dr', 'Rachel', '1-800-121-4547', 'Pharmacis', 85267453, 'E4');
+('57354 Big Beaver Rd', 'Rachel', '1-248-858-1283', 'pharmacist', 34092584, 'E4');
 
 -- --------------------------------------------------------
 
@@ -175,13 +175,13 @@ INSERT INTO `employee` (`address`, `name`, `phoneNumber`, `job`, `taxID`, `emplo
 --
 
 CREATE TABLE `fees` (
-  `amountOwed` varchar(11) NOT NULL,
+  `amountOwed` varchar(11) DEFAULT NULL,
   `amountPaid` varchar(11) NOT NULL,
   `datePaid` varchar(11) NOT NULL,
   `dateIssued` varchar(11) NOT NULL,
   `feeID` varchar(11) NOT NULL,
   `patientID` varchar(11) NOT NULL,
-  `totalBalance` varchar(11) NOT NULL
+  `totalBalance` varchar(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -189,7 +189,8 @@ CREATE TABLE `fees` (
 --
 
 INSERT INTO `fees` (`amountOwed`, `amountPaid`, `datePaid`, `dateIssued`, `feeID`, `patientID`, `totalBalance`) VALUES
-('$25.00', '$50.00', '12/21/2001', '12/21/2001', 'F1', 'P1', '$25.00');
+('$25.00', '$50.00', '12/21/2001', '12/21/2001', 'F1', 'P1', '$25.00'),
+(NULL, '$25.00', '12/22/2002', '12/21/2001', 'F2', 'P1', NULL);
 
 -- --------------------------------------------------------
 
@@ -255,7 +256,7 @@ CREATE TABLE `medication` (
   `patientID` varchar(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `strength` varchar(10) NOT NULL,
-  `pharmacist` varchar(20) NOT NULL,
+  `pharmacistID` varchar(20) DEFAULT NULL,
   `drugID` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -263,8 +264,8 @@ CREATE TABLE `medication` (
 -- Dumping data for table `medication`
 --
 
-INSERT INTO `medication` (`rxNumber`, `dateFilled`, `directions`, `drugName`, `employeeID`, `form`, `medicationID`, `numberOfRefills`, `originalDate`, `patientID`, `quantity`, `strength`, `pharmacist`, `drugID`) VALUES
-('rx672432', '05/24/2000', 'take one pill everyday in the morning', 'Abilify', 'E1', 'tablet', 'M1', 4, '05/24/2000', 'P1', 30, '10mg', 'Rachel Jene', 'D1');
+INSERT INTO `medication` (`rxNumber`, `dateFilled`, `directions`, `drugName`, `employeeID`, `form`, `medicationID`, `numberOfRefills`, `originalDate`, `patientID`, `quantity`, `strength`, `pharmacistID`, `drugID`) VALUES
+('rx672432', '05/24/2000', 'take one pill everyday in the morning', 'Abilify', 'E1', 'tablet', 'M1', 4, '05/24/2000', 'P1', 30, '10mg', 'E4', 'D1');
 
 -- --------------------------------------------------------
 
@@ -351,16 +352,17 @@ CREATE TABLE `surgeries` (
   `nurseID` varchar(10) NOT NULL,
   `SurgeryID` varchar(10) NOT NULL,
   `notes` varchar(50) NOT NULL,
-  `appointmentID` varchar(10) DEFAULT NULL
+  `appointmentID` varchar(10) DEFAULT NULL,
+  `results` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `surgeries`
 --
 
-INSERT INTO `surgeries` (`nurseID`, `SurgeryID`, `notes`, `appointmentID`) VALUES
-('E3', 'SU1', 'his shit was broken dawg', 'A2'),
-('E3', 'SU2', 'his shit was broken again dawg', 'A3');
+INSERT INTO `surgeries` (`nurseID`, `SurgeryID`, `notes`, `appointmentID`, `results`) VALUES
+('E3', 'SU1', 'his shit was broken dawg', 'A2', 'completed'),
+('E3', 'SU2', 'his shit was broken again dawg', 'A3', NULL);
 
 --
 -- Indexes for dumped tables

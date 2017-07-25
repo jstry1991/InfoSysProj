@@ -3,7 +3,15 @@
 <head><link rel="stylesheet" href="style.css" type="text/css"></head>
 <a href ="index.html">Home</a>
 <body>
-	<?php
+<form action="operating_room_log.php" method="post">
+  day:<br>
+  <input type="text" name="day"><br>
+  <input type="submit" name="submit" value ="submit">
+</form>
+<?php
+include('dbconnect.php');
+if(isset($_POST['day'])){
+$day=$_POST['day'];
 	include('dbconnect.php');
 $query="SELECT *, e.name as e_name, p.name as p_name, n.name as n_nurse 
 		FROM appointments a 
@@ -11,7 +19,7 @@ $query="SELECT *, e.name as e_name, p.name as p_name, n.name as n_nurse
 		INNER JOIN patient p ON p.patientID = a.patientID 
 		INNER JOIN appointmenttime ap ON ap.appointmentID = a.appointmentID 
 		INNER JOIN surgeries s ON s.appointmentID = a.appointmentID
-		INNER JOIN employee n ON n.employeeID=s.nurseID"; 
+		INNER JOIN employee n ON n.employeeID=s.nurseID WHERE ap.day ='".$day."' AND s.results = 'completed'"; 
 $result = mysqli_query($conn,$query);
 echo
 "<table>
@@ -42,7 +50,7 @@ else {
 }
 echo 
 "</table>";
-
+}
 include('dbclose.php'); 
 ?>
 </body>
