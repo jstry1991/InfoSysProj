@@ -63,7 +63,6 @@ else {
 }
 echo 
 "</table>";
-
 include('dbclose.php'); 
 ?>
 </body>
