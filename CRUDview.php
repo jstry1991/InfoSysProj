@@ -35,6 +35,7 @@
 				<th>Patient Sex</th>
 				<th>Patient Date Of Birth</th>
 				<th>Patient ID</th>
+				<th colspan="2">Action</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -46,13 +47,11 @@
 					<td><?php echo $row['patientSex'] ?></td>
 					<td><?php echo $row['patientDateOfBirth'] ?></td>
 					<td><?php echo $row['patientID'] ?></td>
-
-					<
 					<td>
-						<a href="Crud.php?edit=<?php echo $row['patientID']; ?>">Edit</a>
+						<a href="CRUDview.php?edit=<?php echo $row['patientID']; ?>">Edit</a>
 					</td>
 					<td> 
-						<a href="Crud.php?delete=<?php echo $row['patientID']; ?>">Delete</a>
+						<a href="CRUDview.php?delete=<?php echo $row['patientID']; ?>">Delete</a>
 					</td>	
 				</tr>
 
@@ -62,17 +61,17 @@
 	<input type="hidden" name="patienID" value ="<?php echo $patientID ?>">
 
 		<br><label>Patient Name</label>
-			<input type="text" name="patientName" value ="<?php echo $patientName ?>">	
+			<input type="text" name="patientName" placeholder=" First Last" value ="<?php echo $patientName?>">	
 		<label>Patient Address</label>
-			<input type="text" name="patientAddress" value ="<?php echo $patientAddress ?>">
+			<input type="text" name="patientAddress" placeholder=" 123 First Ave." value ="<?php echo $patientAddress ?>">
 		<label>Patient Number</label>
-			<input type="text" name="patientNumber" value ="<?php echo $patientNumber ?>">	
+			<input type="text" name="patientNumber" placeholder="1-222-333-4455" value ="<?php echo $patientNumber ?>"><br/><br/>
 		<label>Patient Sex</label>
-			<input type="text" name="patientSex" value ="<?php echo $patientSex ?>">
+			<input type="text" name="patientSex" placeholder="male/female" value ="<?php echo $patientSex ?>">
 		<label>Patient Date of Birth</label>
-			<input type="text" name="patientDateOfBirth" value ="<?php echo $patientDateOfBirth ?>">	
+			<input type="text" name="patientDateOfBirth" placeholder="mm/dd/yy" value ="<?php echo $patientDateOfBirth ?>">	
 		<label>Patient ID</label>
-			<input type="text" name="patientID" value ="<?php echo $patientID ?>">	<br><br>
+			<input type="text" name="patientID" placeholder="P1" value ="<?php echo $patientID ?>">	<br><br>
 
 
 			<?php if($edit_state == false): ?>
