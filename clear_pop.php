@@ -7,7 +7,6 @@ if(isset($_REQUEST['clear'])){
 	"labtest","medication","patient","procedures","schedule","surgeries");
 	for($i=0; $i<count($tableList); $i++){
 	$sqldel="Truncate table ".$tableList[$i]."";
-	echo $sqldel;
 	mysqli_query($conn,$sqldel);}
 	$sqlquery="SET FOREIGN_KEY_CHECKS=1";
 	mysqli_query($conn,$sqlquery);
