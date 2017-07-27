@@ -1,6 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head><link rel="stylesheet" href="style.css" type="text/css"></head>
+
+<h1>Wellness Clinic Project</h1>
+<h4> Justin Stryjewski, Richard Lin</h4>
+<ul>
+	<li>Relations</li>
+</ul>
+<ol>
+	<li><a href="Appointments.php">Appointments</a></li>
+	<li><a href="AppointmentTimes.php">Appointment Times</a></li>
+	<li><a href="Clinic.php">Clinic</a></li>
+	<li><a href="DrugInfo.php">Drug Info</a></li>
+	<li><a href="Employee.php">Employee</a></li>
+	<li><a href="Fees.php">Fees</a></li>
+	<li><a href="Insurance.php">Insurance</a></li>
+	<li><a href="LabTestPrint.php">Lab Test</a></li>
+	<li><a href="Medication.php">Medication</a></li>
+	<li><a href="Procedures.php">Procedures</a></li>
+	<li><a href="Schedule.php">Schedule</a></li>
+	<li><a href="Surgeries.php">Surgeries</a></li>
+	<li><a href="Patient.php">Patient</a></li>
+	<li><a href="Diagnoses.php">Diagnoses</a></li>
+</ol>
+<ul>
+	<li>Reports</li>
+</ul>
+<ol>
+<li><a href="weeklyCoverageSchedule.php">weekly coverage schedule</a>(This form lists the weekly schedule of the staff for each week)</li>
+<li><a href="dailyMasterSchedule.php">Daily Master Schedule</a>(Lists the daily schedule of each practitioner for each day)</li>
+<li><a href="individualPractitionersSchedule.php">Individual Practitioners Schedule</a>(This form lists a individual practitioner schedule for any day)</li>
+<li><a href="physiciansStatement.php">Physicians Statement For Insurance Forms</a>(This is a pre-printed form used primarily for insurance purposes)</li>
+<li><a href="patientMonthlyStatement.php">Patient Monthly Statement</a>(This form lists the patient monthly statement if they have unpaid balances)</li>
+<li><a href="prescriptionLabelandReceipt.php">Prescription Label And Receipt</a>(This form lists drug and medication information for a given patient)</li>
+<li><a href="labTest.php">Daily Laboratory Log</a>(This form displays all laboratory logs performed each day)</li>
+<li><a href="operating_room_schedule.php">Operating Room Schedule</a>(This form provides all information about all schdeuled surgeries for the day)</li>
+<li><a href="operating_room_log.php">Operating Room Log</a>(This form lists all the scheduled surgeries for the day)</li>
+<li><a href="monthlyReport.php">Monthly Activity Report</a>(This form reports the clinics activity logs for each month)</li>
+
+</ol>
+<form action="clear_pop.php" method="post">
+	<input type="submit"  name="clear" value="Clear Database">
+	<input type="submit" name="populate" value ="Populate Database">
+</form>
+<br>
+<form action="Ad_Hoc.php" method="post">
+	<textarea name="query" rows="10" cols="30">Enter query here...</textarea>
+	<br>
+	<input type="submit" name ="submit">
+	<button type="reset" >Clear</button>
+</form>
+</form>
+<a href="CRUDview.php"><h3>Add a Patient<h3></a>
 <header>
 	<h1>Wellness Clinic Project</h1>
 	<h4> Justin Stryjewski, Richard Lin</h4>

@@ -31,15 +31,15 @@
 
 	//update Records
 	if (isset($_POST['edit'])) {
-		$patientName = $_POST['patientName'];
-		$patientAddress = $_POST['patientAddress'];
-		$patientDateOfBirth = $_POST['patientDateOfBirth'];
-		$patientNumber =$_POST['patientNumber'];
-		$patientSex = $_POST['patientSex'];
-		$patientID = $_POST['patientID'];
+		$patientName = ($_POST['patientName']);
+		$patientAddress = ($_POST['patientAddress']);
+		$patientDateOfBirth = ($_POST['patientDateOfBirth']);
+		$patientNumber =($_POST['patientNumber']);
+		$patientSex = ($_POST['patientSex']);
+		$patientID = ($_POST['patientID']);
 
 		
-		mysqli_query($conn, "UPDATE patient SET name='$patientName', patientID='$patientID' WHERE patientID='$patientID', address ='$patientAddress', dateOfBirth='$patientDateOfBirth', phoneNumber='$patientNumber', sex='$patientSex'");
+		mysqli_query($conn, "UPDATE patient SET name='$patientName', patientID='$patientID', address ='$patientAddress', dateOfBirth='$patientDateOfBirth', phoneNumber='$patientNumber', sex='$patientSex' WHERE patientID='$patientID'");
 		
 		$_SESSION['msg'] = "Entry Updated";
 		header('location: CRUDview.php');
