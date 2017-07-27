@@ -12,44 +12,7 @@
 	include('dbconnect.php');
 
 ?>
-<form action="./physiciansStatement.php" method="post">
-<input type ="hidden" name="submitted" value="true" />
-<fieldset>
-	<h3>Clinic Name:</h3>
-	<input type="text" name="clinicName" id="clinicName">
-	<h3>Clinic Address: </h3>
-	<input type="text" name="clinicAddress" id="clinicAddress">
-	<h3>Clinic Phone Number:</h3>
-	<input type="text" name="clinicPhonenumber" id="clinicPhonenumber">
-	<h3>Clinic ID:</h3>
-	<input type="text" name="clinicID" id="clinicID">
-	<h3>Appointment ID:</h3>
-	<input type="text" name="appointmentID" id="appointmentID">
-</fieldset>
-	<input type="submit" name="submitted">
-</form>
-
-<a href ="index.html">Home</a>
-	<?php
-//	$var = $_POST["search"];
-	include('dbconnect.php');
-	
-
-//$sql = "SELECT * FROM patient where name = '". $var ."'";
-$sql2 = "SELECT sum(cast(fees as decimal)) as total FROM procedures";
-
-if (isset($_POST['submitted'])) {
-	$cName = $_POST['clinicName'];
-	$cAddress = $_POST['clinicAddress'];
-	$cPhoneNumber = $_POST['clinicPhonenumber'];
-	$cID = $_POST['clinicID'];
-	$cAppointmentID = $_POST['appointmentID'];
-	$sql="INSERT INTO clinic (address, clinicID, phoneNumber, name, appointmentID) VALUES ('".$cAddress."', '".$cID."', '".$cPhoneNumber."', '".$cName."', '".$cAppointmentID."')";
-	$resultSubmit = mysqli_query($conn, $sql);
-	if(!$resultSubmit) {
-		die("There was an error");
-	}
-}
+<?php
 
 $query ="SELECT c.name as clinic_name, c.address as clinic_address, c.phoneNumber as clinic_number, em.taxID as employee_tax, em.name as employee_name, p.name as patient_name, a.visitType, pr.name as procedure_name, pr.codes, pr.other, pr.otherFee, pr.fees as procedure_fees, pr.otherCodes, f.amountPaid, f.totalBalance, i.company
 		FROM clinic as c 
@@ -64,26 +27,7 @@ $query2 = "SELECT d.name as diagnoses_name, d.codes as diagnoses_codes, d.other 
 $result = mysqli_query($conn,$query); // result for table output
 $result2 = mysqli_query($conn,$query2); //result for diagnoses output
 $result3 = mysqli_query($conn,$sql2); //result for total fees
-//$result4 = $conn->query($sql); //result for search
-/*
-if ($result4->num_rows > 0) {
-	echo "<table>";
-	while($row = $result4->fetch_assoc()) {
-		echo "
-		<tr><h2>Patient Name</h2>
-		<h2>Address</h2>
-		<h2>dateOfBirth</h2>
-		<h2>phoneNumber</h2>
-		<h2>sex</h2></tr>
-		<tr><td>" .$row["name"]. "</td><td>" .$row["address"]. "</td><td>" .$row["dateOfBirth"]. "</td><td>" .$row["phoneNumber"]. "</td><td>" .$row["sex"]. "</td></tr>";
-	}
-	echo "</table>";
-} else {
-	echo "No Reults";
-}
 
-mysqli_free_result($result4);
-*/
 
 echo
 "<table>

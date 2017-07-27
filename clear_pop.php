@@ -138,7 +138,7 @@ if(isset($_REQUEST['clear'])){
 		('10248 Hydro Dr', '02/16/1990', 'Bruce Wayne', '1-123-654-9300', 'P5', 'male'),
 		('86043 Spring Water Dr', '10/31/1990', 'Natasha Romanoff', '1-534-678-4367', 'P6', 'female'),
 		('49028 Tapping Way Dr.', '11/25/1991', 'Peter Parker', '1-346-363-4567', 'P7', 'male'),
-		('12312 Scracher Lane', '01/01/1992', 'Mary Jane', '1-345-664-1135', 'P8', 'femal'),
+		('12312 Scracher Lane', '01/01/1992', 'Mary Jane', '1-345-664-1135', 'P8', 'female'),
 		('02130 Samsung Blvd', '07/04/1988', 'Pepper Pots', '1-744-245-4325', 'P9', 'female'),
 		('19238 Apple Lane', '02/04/1993', 'Wally West', '1-432-765-2467', 'P10', 'male')";
 		mysqli_query($conn,$sqlinsert);
