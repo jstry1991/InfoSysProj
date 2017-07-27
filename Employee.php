@@ -2,7 +2,9 @@
 <html>
 <head>
 <link rel="stylesheet" href="style.css" type="text/css">
-<a href ="index.html">Home</a>
+<div class ="box">
+	<a href ="index.html">Home</a>
+</div>
 </head>
 <body>
 	<?php
