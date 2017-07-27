@@ -11,7 +11,7 @@ if(isset($_REQUEST['clear'])){
 		$sqlquery="SET FOREIGN_KEY_CHECKS=1";
 		mysqli_query($conn,$sqlquery);
 	}
-
+		header('location: index.html');
 	?>
 
 	<?php
@@ -182,5 +182,5 @@ if(isset($_REQUEST['clear'])){
 		$sqlquery="SET FOREIGN_KEY_CHECKS=1";
 		mysqli_query($conn,$sqlquery);
 	}
-
+		header('location: index.html');
 	?>
