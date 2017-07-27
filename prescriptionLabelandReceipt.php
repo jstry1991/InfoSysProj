@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head><link rel="stylesheet" href="style.css" type="text/css"></head>
-<a href ="index.html">Home</a>
+<div class ="box">
+	<a href ="index.html">Home</a>
+</div>
 <body>
 <form action="prescriptionLabelandReceipt.php" method="post">
-  name:<br>
+<br>
+<div class="box">
+  name:
+  </div>
+  <br>
   <input type="text" name="fname"><br>
-  drug name:<br>
+  <div class="box">
+  drug name:
+  </div>
+  <br>
   <input type="text" name ="drug"><br>
   <input type="submit" name="submit" value ="submit">
 </form>

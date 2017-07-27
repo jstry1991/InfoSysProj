@@ -48,6 +48,8 @@ html {
    border: 1px solid black;
    opacity: 0.8;
    background-color: #ffffff;
+   display:table-cell;
+   display:inline-block;
  }
  .col-container {
     display: table;

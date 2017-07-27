@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head><link rel="stylesheet" href="style.css" type="text/css"></head>
-<a href ="index.html">Home</a>
+<div class ="box">
+	<a href ="index.html">Home</a>
+</div>
 <body>
 <form action="operating_room_schedule.php" method="post">
-  day:<br>
+<br>
+<div class="box">
+  day:
+  </div>
+  <br>
   <input type="text" name="day"><br>
   <input type="submit" name="submit" value ="submit">
 </form>
