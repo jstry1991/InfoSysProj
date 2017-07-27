@@ -5,8 +5,7 @@
 <body>
 	<?php
 	include('dbconnect.php');
-$query ="SELECT (SELECT COUNT(*) FROM appointments)as NumOfApp,(SELECT COUNT(*)FROM surgeries) as NumofSurg,(SELECT COUNT(*)FROM medication)as NumOfMed,
-(SELECT DISTINCT testType FROM labtest ORDER BY testType ASC)as Type,(SELECT COUNT(*)FROM labtest ORDER BY testType ASC)as NumOfTests";
+$query ="SELECT (SELECT COUNT(*) FROM appointments)as NumOfApp,(SELECT COUNT(*)FROM surgeries) as NumofSurg,(SELECT COUNT(*)FROM medication)as NumOfMed";
 $result = mysqli_query($conn,$query);
 echo
 "<table>
@@ -50,10 +49,11 @@ echo
 	<th> Tests </th>
 	<th>Number of Tests</th>
 </tr>";
+$query="SELECT testType, COUNT(*) as testCount FROM labtest GROUP BY testType";
 $result = mysqli_query($conn,$query);
 while ($row = mysqli_fetch_assoc($result)){ //Creates a loop through results
 	if ($row)
-		echo "<tr><td>".$row["Type"]."</td><td>".$row["NumOfTests"]."</td></tr>";
+		echo "<tr><td>".$row["testType"]."</td><td>".$row["testCount"]."</td></tr>";
 }
 echo 
 "</table>";
