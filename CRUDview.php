@@ -8,7 +8,7 @@
 if(isset($_GET['edit'])) {
 	$patientID = $_GET['edit'];
 	$edit_state = true;
-	$rec = mysqli_query($conn, "SELECT p.address as patientAddress, p.dateOfBirth as patientDateOfBirth, p.name as patientName, p.phoneNumber as patientNumber, p.patientID as patientID, p.sex as patientSex FROM patient as p");
+	$rec = mysqli_query($conn, "SELECT p.address as patientAddress, p.dateOfBirth as patientDateOfBirth, p.name as patientName, p.phoneNumber as patientNumber, p.patientID as patientID, p.sex as patientSex FROM patient as p WHERE patientID = '$patientID'");
 	$record = mysqli_fetch_array($rec);
 
 	$patientName = $record['patientName'];
