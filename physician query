@@ -1,0 +1,9 @@
+physician query
+
+SELECT (SELECT c.name FROM clinic c) as clinic_name,(SELECT c.address FROM clinic c)as clinic_address, (SELECT c.phoneNumber FROM clinic c)as clinic_number,em.taxID as employee_tax, em.name as employee_name, p.name as patient_name, a.visitType, pr.name as procedure_name, pr.codes, pr.other, pr.otherFee, pr.fees as procedure_fees, pr.otherCodes, f.amountPaid, f.totalBalance, i.company
+		FROM appointments as a  
+		INNER JOIN employee as em ON em.employeeID=a.employeeID
+		INNER JOIN patient as p ON p.patientID=a.patientID
+		INNER JOIN fees as f ON f.patientID=p.patientID
+		INNER JOIN procedures as pr ON pr.procedureID=a.procedureID
+		INNER JOIN insurance as i ON i.patientID=p.patientID
